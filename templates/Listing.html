@@ -1,0 +1,184 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+{% block title %}
+Profile Listing
+{% endblock %}
+
+{% block css %}
+#id_gender{
+    width:97%;
+    margin-top:2%;
+    margin-bottom:2%;
+    }
+#id_marital_status{
+    width:97%;
+    margin-top:2%;
+    margin-bottom:2%;
+    }
+#id_marital_status{
+    width:97%;
+    margin-top:2%;
+    margin-bottom:2%;
+    }
+#id_body_type{
+    width:97%;
+    margin-top:2%;
+    margin-bottom:2%;
+    }
+#id_religion{
+    width:97%;
+    margin-top:2%;
+    margin-bottom:2%;
+    }
+#id_education{
+    width:97%;
+    margin-top:2%;
+    margin-bottom:2%;
+    }
+#searhp{
+    width:97%;
+    margin-top:2%;
+    margin-bottom:2%;
+    }
+#listing a {
+    color: #0e0e0e;
+    text-decoration: none;
+    background: none;
+}
+{% endblock %}
+{% block content %}
+
+
+<section id="listing" class="clearfix">
+   <div class="col-sm-12 space_all">
+    <div class="col-sm-3 space_all">
+	 <div class="listing_main">
+	   <div class="listing_1">
+	   <h3>Patner Search</h3>
+	   </div>
+	   <form method="get" class="listing_3">
+            {{ myfilter.form  }}
+           <input type="submit" class="btn btn-success btn-sm" id="searhp" value="Seach">
+	   </form>
+	 </div>	 
+	</div>
+	<div class="col-sm-9 space_all">
+	 <div class="listing_inner_2 clearfix">
+	  <div class="listing_9">
+	  <ul>
+	      <li><a href="{% url 'Home' %}"></a>Home</li>
+		  <li> > </li>
+		  <li><a href="{% url 'listing' %}">Listing Profile</a></li>
+
+	  </ul>
+	 </div>
+	 <div class="listing_10">
+	   <div class="col-sm-12 space_all">
+	 <div class="chance">
+	  <ul class="nav nav-tabs"> 
+  <li class="active"><a data-toggle="tab" >Recent Profile</a></li>
+</ul>
+      <div class="tab-content clearfix">
+      {% for pro in prof %}
+      {% if pro.redaytogo == True %}
+
+     <div id="home" class="tab-pane fade in active clearfix">
+     <div class="click clearfix">
+	    <div class="col-sm-12 space_all">
+		 <div class="listing_inner_1 clearfix">
+		  <div class="col-sm-4 space_all">
+		  <div class="listing_11">
+              {% if pro.photo %}
+             <h2><a ><img src="{{ pro.photo.url }}" width="100%"></a></h2>
+              {% else %}
+		     <h2><a ><img src="{% static 'img/13.jpg' %}" width="100%"></a></h2>
+              {% endif %}
+		  </div>
+		 </div>
+		 <div class="col-sm-8">
+		  <div class="col-sm-12 space_all">
+		   <div class="col-sm-10 space_all">
+		    <div class="listing_12 clearfix">
+			 <h4><i class="fa fa-heart"></i><a >{{ pro.email.first_name }} {{ pro.email.last_name }}</a></h4>
+			 <ul>
+			      <li><a><i class="fa fa-dot-circle-o"></i>Age: {{ pro.age }} Yrs Height: {{ pro.height }} In</a></li>
+				  <li><a><i class="fa fa-dot-circle-o"></i>Religion: {{ pro.religion }}</a></li>
+				  <li><a><i class="fa fa-dot-circle-o"></i>Marital Status: {{ pro.marital_status }}</a></li>
+				  <li><a><i class="fa fa-dot-circle-o"></i>Location: {{pro.city}}/{{ pro.country }}</a></li>
+				  <li><a><i class="fa fa-dot-circle-o"></i>Eduction: {{ pro.education }}</a></li>
+				  <li><a><i class="fa fa-dot-circle-o"></i>Profession: {{ pro.employed }}</a></li>
+				  <li><a><i class="fa fa-dot-circle-o"></i>Annual Income: {{ pro.annual_income }}</a></li>
+			 </ul>
+			 <h5 class="text-right"><a href="{% url 'viewprofile' pro.id%}">View Full Profile</a></h5>
+			</div>
+		   </div>
+		  </div>
+		 </div>
+		 </div>	     		 
+		</div>
+       </div>
+      </div>
+      {% endif %}
+      {% endfor %}
+
+       </div>
+     <nav aria-label="Page navigation example">
+  <ul class="pagination"  style="padding-left: 31px;">
+      {% if prof.has_previous  %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{ prof.previous_page_number }}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+      {% endif %}
+    <li class="page-item "><a class="page-link" href="?page={{ prof.number }}">{{ prof.number }}</a></li>
+  {% if prof.has_next  %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{ prof.next_page_number }}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  {% endif %}
+  </ul>
+</nav>
+      </div> 
+     </div>
+	  </div>
+	 </div>	 	  
+	</div>
+   </div>
+</section>
+<script type="text/javascript">
+	$(document).on('click', '.panel-heading span.clickable', function (e) {
+    var $this = $(this);
+    if (!$this.hasClass('panel-collapsed')) {
+        $this.parents('.panel').find('.panel-body').slideUp();
+        $this.addClass('panel-collapsed');
+        $this.find('i').removeClass('glyphicon-minus').addClass('glyphicon-plus');
+    } else {
+        $this.parents('.panel').find('.panel-body').slideDown();
+        $this.removeClass('panel-collapsed');
+        $this.find('i').removeClass('glyphicon-plus').addClass('glyphicon-minus');
+    }
+});
+$(document).on('click', '.panel div.clickable', function (e) {
+    var $this = $(this);
+    if (!$this.hasClass('panel-collapsed')) {
+        $this.parents('.panel').find('.panel-body').slideUp();
+        $this.addClass('panel-collapsed');
+        $this.find('i').removeClass('glyphicon-minus').addClass('glyphicon-plus');
+    } else {
+        $this.parents('.panel').find('.panel-body').slideDown();
+        $this.removeClass('panel-collapsed');
+        $this.find('i').removeClass('glyphicon-plus').addClass('glyphicon-minus');
+    }
+});
+$(document).ready(function () {
+    $('.panel-heading span.clickable').click();
+    $('.panel div.clickable').click();
+});
+
+	</script>
+
+{% endblock %}

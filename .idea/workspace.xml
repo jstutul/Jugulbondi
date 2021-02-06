@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="334bbff4-6271-4d6a-82e7-e7bae03d6603" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1kNeO8b0v2tTFA34cOyXKPuUWP8" />
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\Django course\Marriage\media" />
+      <recent name="F:\Django course\Marriage" />
+      <recent name="F:\Django course\Marriage\static\slider" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\django project\Marriage" />
+      <recent name="F:\Django course\Marriage\static" />
+      <recent name="F:\Django course\Marriage\templates\dashboard" />
+      <recent name="F:\Django course\Marriage\static\dashboard" />
+      <recent name="F:\Django course\Marriage\templates\user" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Python.SuccessRate">
+    <configuration name="SuccessRate" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Marriage" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SuccessRate.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="j" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Marriage" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$USER_HOME$/Desktop/data" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$USER_HOME$/Desktop/data/j.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="predictmodel" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Marriage" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/predictmodel.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Marriage" type="Python.DjangoServer" factoryName="Django server">
+      <module name="Marriage" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="Marriage.settings" />
+      </envs>
+      <option name="SDK_HOME" value="F:\Django course\Marriage\menv\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.SuccessRate" />
+        <item itemvalue="Python.predictmodel" />
+        <item itemvalue="Python.j" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="334bbff4-6271-4d6a-82e7-e7bae03d6603" name="Default Changelist" comment="" />
+      <created>1605545441434</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1605545441434</updated>
+      <workItem from="1605545445153" duration="4681000" />
+      <workItem from="1605629011132" duration="14366000" />
+      <workItem from="1605728765769" duration="2885000" />
+      <workItem from="1605804931682" duration="6689000" />
+      <workItem from="1605815626596" duration="651000" />
+      <workItem from="1605892650633" duration="6668000" />
+      <workItem from="1605986476647" duration="1165000" />
+      <workItem from="1606241691089" duration="4640000" />
+      <workItem from="1606669338013" duration="7597000" />
+      <workItem from="1606757487574" duration="1443000" />
+      <workItem from="1607025148366" duration="2442000" />
+      <workItem from="1607034232297" duration="2218000" />
+      <workItem from="1607064822676" duration="14454000" />
+      <workItem from="1607162848715" duration="8261000" />
+      <workItem from="1608842872948" duration="3193000" />
+      <workItem from="1608881749942" duration="2315000" />
+      <workItem from="1608888468102" duration="10471000" />
+      <workItem from="1609007873645" duration="2495000" />
+      <workItem from="1609090981349" duration="1221000" />
+      <workItem from="1609355940034" duration="8130000" />
+      <workItem from="1609402736833" duration="8540000" />
+      <workItem from="1609439247971" duration="17057000" />
+      <workItem from="1609487479917" duration="706000" />
+      <workItem from="1609503805998" duration="909000" />
+      <workItem from="1609517032726" duration="17509000" />
+      <workItem from="1609573184216" duration="9944000" />
+      <workItem from="1609610475084" duration="10387000" />
+      <workItem from="1609662411901" duration="4637000" />
+      <workItem from="1609749842268" duration="1281000" />
+      <workItem from="1609775921745" duration="21115000" />
+      <workItem from="1609873415109" duration="5245000" />
+      <workItem from="1609949630016" duration="409000" />
+      <workItem from="1609950281380" duration="17746000" />
+      <workItem from="1610016003639" duration="4176000" />
+      <workItem from="1610032069711" duration="3399000" />
+      <workItem from="1610128482363" duration="659000" />
+      <workItem from="1610208114759" duration="14291000" />
+      <workItem from="1610273677042" duration="5806000" />
+      <workItem from="1610293149941" duration="9022000" />
+      <workItem from="1610372447525" duration="3920000" />
+      <workItem from="1610384596196" duration="6758000" />
+      <workItem from="1610467547194" duration="5248000" />
+      <workItem from="1610571744344" duration="1035000" />
+      <workItem from="1610572995661" duration="3906000" />
+      <workItem from="1610634872893" duration="23007000" />
+      <workItem from="1610723783073" duration="14668000" />
+      <workItem from="1610777156883" duration="592000" />
+      <workItem from="1610810421432" duration="6850000" />
+      <workItem from="1610869330471" duration="1036000" />
+      <workItem from="1610871338740" duration="4799000" />
+      <workItem from="1610887711357" duration="1735000" />
+      <workItem from="1610894495136" duration="7169000" />
+      <workItem from="1610951579777" duration="5495000" />
+      <workItem from="1610994489896" duration="6502000" />
+      <workItem from="1611071361598" duration="6758000" />
+      <workItem from="1611167450281" duration="1252000" />
+      <workItem from="1611315959475" duration="1361000" />
+      <workItem from="1611330133906" duration="1501000" />
+      <workItem from="1611697885097" duration="894000" />
+      <workItem from="1611744416240" duration="2637000" />
+      <workItem from="1611770705173" duration="541000" />
+      <workItem from="1611825836926" duration="1026000" />
+      <workItem from="1611837977252" duration="959000" />
+      <workItem from="1612468690285" duration="15000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Marriage$j.coverage" NAME="j Coverage Results" MODIFIED="1608900756323" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Desktop/data" />
+    <SUITE FILE_PATH="coverage/Marriage$predictmodel.coverage" NAME="predictmodel Coverage Results" MODIFIED="1610647777087" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Marriage$SuccessRate.coverage" NAME="SuccessRate Coverage Results" MODIFIED="1610877638838" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+</project>

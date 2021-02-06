@@ -1,0 +1,46 @@
+{% extends 'dashboard/base.html' %}
+{% block title %}
+story list
+{% endblock %}
+
+{% block content %}
+                {% if messages %}
+           {% for message in messages %}
+         <div class="alert alert-success alert-dismissable mt-4">
+         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+         {{ message }} <a href="#" class="alert-link"></a>.
+         </div>
+        {% endfor %}
+
+        {% endif %}
+<div class="table-responsive">
+
+											<table class="table mb-none">
+
+												<thead>
+													<tr>
+														<th>No</th>
+														<th>Photo</th>
+														<th>Status</th>
+														<th>Post Date</th>
+														<th>Actions</th>
+													</tr>
+												</thead>
+												<tbody>
+                                                {% for f in story %}
+													<tr>
+														<td>{{ forloop.counter }}</td>
+														<td><img src="{{ f.photo.url }}" style="width: 30px;height: 30px;"></td>
+														<td style="color: #9f14ff;font-size: 20px;">{{f.approve}}</td>
+														<td style="color: #9f14ff;font-size: 20px;">{{f.post_on}}</td>
+														<td class="actions">
+															<a href="{% url 'updatestory' f.id %}" class="btn btn-success btn-sm" style="color: white;">Edit</a>
+                                                            <a href="{% url 'deletestory' f.id %}" class="delete-row btn btn-danger btn-sm"  style="color: white;">Delete</a>
+														</td>
+													</tr>
+                                                {% endfor %}
+												</tbody>
+											</table>
+										</div>
+
+{% endblock %}

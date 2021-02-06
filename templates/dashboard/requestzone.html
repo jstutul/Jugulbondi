@@ -1,0 +1,67 @@
+{% extends 'dashboard/base.html' %}
+{% block title %}
+request zone
+{% endblock %}
+
+{% block content %}
+<div class="table-responsive">
+
+											<table class="table mb-none">
+
+												<thead>
+													<tr>
+														<th>No</th>
+														<th>Request Sender</th>
+														<th>Actions</th>
+													</tr>
+												</thead>
+												<tbody>
+                                                {% for f in a %}
+													<tr>
+														<td>{{ forloop.counter }}</td>
+														<td style="color: #9f14ff;font-size: 20px;">{{f}}</td>
+														<td class="actions">
+															<a href="{% url 'approvedrequest' f.id%}" class="btn btn-success btn-sm" style="color: white;">Approve</a>
+                                                            <a href="{% url 'deleterequest' f.id %}" class="delete-row btn btn-danger btn-sm"  style="color: white;">Delete</a>
+														</td>
+													</tr>
+                                                {% endfor %}
+												</tbody>
+											</table>
+										</div>
+
+{% endblock %}
+
+{#<div class="table-responsive">#}
+{#											<table class="table mb-none">#}
+{#												<thead>#}
+{#													<tr>#}
+{#														<th>No</th>#}
+{#														<th>Request Sender</th>#}
+{#														<th>Request status</th>#}
+{#														<th>Actions</th>#}
+{#													</tr>#}
+{#												</thead>#}
+{#												<tbody>#}
+{#                                                {% for f in friends %}#}
+{#													<tr>#}
+{#														<td>{{ forloop.counter }}</td>#}
+{#														<td style="color: #9f14ff;font-size: 20px;">{{f.request_Sent}}</td>#}
+{#                                                        {% if f.contract  == "Accept" %}#}
+{#														<td class="btn btn-success btn-sm">{{f.contract}}ed</td>#}
+{#                                                        {% else %}#}
+{#                                                        <td class="btn btn-danger btn-sm">{{f.contract}}</td>#}
+{#                                                        {% endif %}#}
+{#														<td class="actions">#}
+{#                                                            {% if f.contract  == "Accept" %}#}
+{#															<a href="{% url 'pendingrequest' f.request_Sent.id %}" class="btn btn-danger btn-sm" style="color: white;">Pending</a>#}
+{#															{% else %}#}
+{#                                                            <a href="{% url 'approvedrequest' f.request_Sent.id %}" class="btn btn-success btn-sm" style="color: white;">Approve</a>#}
+{#                                                            {% endif %}#}
+{#                                                            <a href="{% url 'releterequest' f.request_Sent.id%}" class="delete-row btn btn-danger btn-sm"  style="color: white;">Delete</a>#}
+{#														</td>#}
+{#													</tr>#}
+{#                                                {% endfor %}#}
+{#												</tbody>#}
+{#											</table>#}
+{#										</div>#}

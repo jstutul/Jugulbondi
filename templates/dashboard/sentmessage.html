@@ -1,0 +1,33 @@
+{% extends 'dashboard/messagebase.html' %}
+{% block title %}
+view sent messeges
+{% endblock %}
+
+{% block content %}
+<div id="mailbox-email-list" class="mailbox-email-list">
+									<div class="nano">
+										<div class="nano-content">
+											<ul id="" class="list-unstyled">
+                                            <h4 class="bg-warning text-success " style="padding: 7px;ruby-align: center;">Sent & replied messages</h4>
+                                            {% for m in msg %}
+												<li style="background: black;color: white;">
+													<a href="{% url 'sendmessagedetails' m.id%}">
+														<div class="col-sender">
+															<p class="m-none ib"><img src="{{ m.receiver.profile.photo.url }}" height="30px" width="30px" style="border-radius: 20px;color: white;"> {{ m.receiver.full_name }}</p>
+														</div>
+														<div class="col-mail">
+															<p class="m-none mail-content">
+																<span class="subject">{{ m.subject }}– &nbsp;</span>
+																<span class="mail-partial" >{{ m.demotext }}</span>
+															</p>
+															<p class="m-none mail-date" style="width: auto">{{ m.send_on | timesince }}</p>
+														</div>
+													</a>
+												</li>
+                                                {% endfor %}
+
+											</ul>
+										</div>
+									</div>
+								</div>
+{% endblock %}

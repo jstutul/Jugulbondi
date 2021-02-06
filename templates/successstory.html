@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+success story page
+{% endblock %}
+
+{% block content %}
+    <div class="tab-content clearfix">
+    {% for s in story %}
+     <div id="home" class="tab-pane fade in active clearfix">
+     <div class="click clearfix">
+	    <div class="col-sm-12 space_all">
+		 <div class="listing_inner_1 clearfix">
+		  <div class="col-sm-4 space_all">
+		  <div class="listing_11">
+              {% if s.photo %}
+             <h2><a ><img src="{{ s.photo.url }}" width="100%"></a></h2>
+              {% else %}
+		     <h2><a ><img src="{% static 'img/13.jpg' %}" width="100%"></a></h2>
+              {% endif %}
+		  </div>
+		 </div>
+		 <div class="col-sm-8">
+		  <div class="col-sm-12 space_all">
+		   <div class="col-sm-10 space_all">
+		    <div class="listing_12 clearfix">
+			 <h4><i class="fa fa-user"></i><a  href="{% url 'viewstory'  s.id %}">Post By : {{ s.post_by.full_name }} </a></h4>
+
+			 <ul>
+                  <li><code><i class="text-warning"></i>Post on : {{ s.post_on }} </code></li>
+				  <li><a>
+                {{ s.sample | safe }}
+                  </a></li>
+             </ul>
+
+			</div>
+                <h5 class="text-left"><a href="{% url 'viewstory'  s.id %}">continue reading</a></h5>
+		   </div>
+		  </div>
+		 </div>
+		 </div>
+		</div>
+       </div>
+      </div>
+     {% endfor %}
+
+       </div>
+<nav aria-label="Page navigation example">
+  <ul class="pagination"  style="padding-left: 31px;">
+      {% if story.has_previous  %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{ story.previous_page_number }}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+      {% endif %}
+    <li class="page-item"><a class="page-link" href="?page={{ story.number }}">1</a></li>
+  {% if story.has_next  %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{ story.next_page_number }}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  {% endif %}
+  </ul>
+</nav>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'dashboard/messagebase.html' %}
+{% block title %}
+reply message
+{% endblock %}
+{% block content %}
+<div id="mailbox-email-list" class="mailbox-email-list">
+									<div class="nano">
+										<div class="nano-content"><form method="post">{% csrf_token %}
+                                        <div class="col-md-5">
+                                           <p> Sender : {{ m.sender }}</p>
+
+                                            {% if m.receiver == request.user %}
+                                            <p>Message :<code>  {{ m.sender_msg }}</code></p>
+                                            {% else %}
+                                           <p>Message :</p> <code>  {{ m.receiver_msg }}</code>
+                                            {% endif %}
+                                        {% if m.sender_msg != "" and m.receiver_msg != ""%}
+                                                <p> Receiver : {{ m.receiver }}</p>
+                                                Reply :  <code>{{ m.receiver_msg }}</code>
+                                        {% else %}
+                                        <textarea class="form-control" rows="3" id="textareaAutosize"name="reply" data-plugin-textarea-autosize="" style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 74px;"></textarea>
+                                        <input type="submit" value="Reply" class="btn btn-primary btn-sm mt-2">
+                                        </div>
+                                        {% endif %}
+                                        </form>
+										</div>
+									</div>
+								</div>
+{% endblock %}
+

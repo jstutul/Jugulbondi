@@ -1,0 +1,25 @@
+{% extends 'dashboard/messagebase.html' %}
+{% block title %}
+reply message
+{% endblock %}
+{% block content %}
+<div id="mailbox-email-list" class="mailbox-email-list">
+									<div class="nano">
+										<div class="nano-content">
+                                        <div class="col-md-5">
+                                           <p> Sender : {{ msg.sender }}</p>
+
+                                            <p>Messege : <code>{{ msg.sender_msg }}</code></p>
+                                        <p> Receiver : {{ msg.receiver }}</p>
+                                            {% if msg.receiver_msg != "" %}
+
+                                            <p>Messege  : <code>{{ msg.receiver_msg }}</code></p>
+                                            {% else %}
+                                            <code>User didn't reply yet</code>
+                                             {% endif %}
+                                        </div>
+										</div>
+									</div>
+								</div>
+{% endblock %}
+

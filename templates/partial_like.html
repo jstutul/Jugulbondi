@@ -1,0 +1,13 @@
+ <li>
+                   <form method="post" action="{% url 'add_like' %}">{% csrf_token %}
+                       {% if is_liked %}
+                      <button type="submit" id="likes" class="btn btn-danger btn-sm float-left" name="likes_btn" value="{{ story.id }}"><i class="fa fa-thumbs-down"></i> Dislike
+                   </button>
+                       {% else %}
+                       <button type="submit" id="likes" class="btn btn-primary btn-sm float-left" name="likes_btn" value="{{ story.id }}"><i class="fa fa-thumbs-up"></i> Like
+                   </button>
+                       {% endif %}
+               <span>Total : {{ total_liked }}</span>
+                   </form>
+
+               </li>

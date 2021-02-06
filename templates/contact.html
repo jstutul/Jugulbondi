@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block title %}
+contract us
+{% endblock %}
+{% block content %}
+
+
+ <section id="contact">
+ <div class="container">
+  <div class="row">
+   <div class="col-sm-12">
+    <div class="contact_1">
+	 <h2 class="text-center">CONTACT US</h2>
+	</div>
+	<div class="col-sm-6">
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }} bg-success p-2"{% endif %}style="background: #00d000;border-radius: 10px;padding: 4px;font-size: 20px;text-align: center;color: white;" >{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+
+
+	 <div class="contact_4">
+	  <p>Send your query to us and we will help you </p>
+	 </div><form method="post">{% csrf_token %}
+	<div class="contact_2">
+
+	  <input type="text" class="form-control"  name="name" placeholder="Name" pattern="[a-zA-Z0-9 a-zA-Z0-9]+" minlength="4" maxlength="20" required>
+	  <input type="text" class="form-control" name="email" placeholder="example@gmail.com" pattern=".+@gmail\.com" required>
+	  <textarea placeholder="Message" name="about" class="form-control" minlength="10" required></textarea>
+	 </div>
+        <input type="submit" class="btn btn-success btn-sm" value="SEND">
+         </form>
+	</div>
+
+	<div class="col-sm-6">
+	 <div class="contact_5">
+	   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3606.80352948607!2d90.37753211713935!3d23.75556297046089!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8ada2664e21%3A0x3c872fd17bc11ddb!2sDaffodil%20International%20University%20(DIU)!5e0!3m2!1sen!2sbd!4v1611698549434!5m2!1sen!2sbd"
+	   width="100%" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>
+	 </div>
+	</div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<script type="text/javascript">
+	$(document).on('click', '.panel-heading span.clickable', function (e) {
+    var $this = $(this);
+    if (!$this.hasClass('panel-collapsed')) {
+        $this.parents('.panel').find('.panel-body').slideUp();
+        $this.addClass('panel-collapsed');
+        $this.find('i').removeClass('glyphicon-minus').addClass('glyphicon-plus');
+    } else {
+        $this.parents('.panel').find('.panel-body').slideDown();
+        $this.removeClass('panel-collapsed');
+        $this.find('i').removeClass('glyphicon-plus').addClass('glyphicon-minus');
+    }
+});
+$(document).on('click', '.panel div.clickable', function (e) {
+    var $this = $(this);
+    if (!$this.hasClass('panel-collapsed')) {
+        $this.parents('.panel').find('.panel-body').slideUp();
+        $this.addClass('panel-collapsed');
+        $this.find('i').removeClass('glyphicon-minus').addClass('glyphicon-plus');
+    } else {
+        $this.parents('.panel').find('.panel-body').slideDown();
+        $this.removeClass('panel-collapsed');
+        $this.find('i').removeClass('glyphicon-plus').addClass('glyphicon-minus');
+    }
+});
+$(document).ready(function () {
+    $('.panel-heading span.clickable').click();
+    $('.panel div.clickable').click();
+});
+
+	</script>
+	
+{% endblock %}

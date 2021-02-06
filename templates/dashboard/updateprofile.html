@@ -1,0 +1,18 @@
+{% extends 'dashboard/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+update profile
+{% endblock %}
+
+{% block css %}
+.invalid-feedback{
+    color:red;
+    }
+{% endblock %}
+
+{% block content %}
+<form method="post" enctype="multipart/form-data">{% csrf_token %}
+{{ form|crispy}}
+<input type="submit" class="btn btn-primary btn-sm btn-outline-danger col-sm-12" style="margin-top: 1%;margin-bottom: 4%;width: 100%;">
+</form>
+{% endblock %}

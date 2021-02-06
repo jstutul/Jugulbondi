@@ -1,0 +1,43 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}
+friends view
+{% endblock %}
+
+{% block content %}
+        {% if messages %}
+           {% for message in messages %}
+         <div class="alert alert-success alert-dismissable mt-4">
+         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+         {{ message }} <a href="#" class="alert-link"></a>.
+         </div>
+        {% endfor %}
+
+        {% endif %}
+  <h3 class="text-center text-success">Friend Request Zone</h3>
+<div class="table-responsive">
+											<table class="table mb-none">
+												<thead>
+													<tr>
+														<th>Photo</th>
+														<th>Name</th>
+														<th>Email</th>
+														<th>Actions</th>
+													</tr>
+												</thead>
+												<tbody>
+                                                {% for f in friendsrequest %}
+													<tr>
+														<td><img src="{{ f.profile.photo.url }}" width="40px" height="40px" style="border-radius: 10px;"></td>
+														<td style="color: #9f14ff;font-size: 17px;">{{ f.first_name }} {{ f.last_name }}</td>
+														<td style="color: #9f14ff;font-size: 17px;">{{f}}</td>
+														<td class="actions">
+															<a href="{% url 'acceptfriend' f.id%}" class="btn btn-success btn-sm" style="color: white;">Accept</a>
+															<a href="{% url 'rejectfriend' f.id%}" class="btn btn-warning btn-sm" style="color: white;">Reject</a>
+														</td>
+													</tr>
+                                                {% endfor %}
+												</tbody>
+											</table>
+										</div>
+{% endblock %}

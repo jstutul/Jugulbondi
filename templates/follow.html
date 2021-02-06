@@ -1,0 +1,11 @@
+<li>
+                    <form method="post" action="{% url 'follow' %}">{% csrf_token %}
+                    {% if is_follow == True %}
+                    <button type="submit" name="profile_id" id="profile_id" value="{{ profile.id }}" class="btn btn-danger "><span class="badge bg-secondary">{{ profile.following.count }}</span> Unfollow</button>
+                    {% else %}
+                    <button type="submit" name="profile_id" id="profile_id" value="{{ profile.id }}" class="btn btn-primary "><span class="badge bg-secondary">{{ profile.following.count }}</span> Follow</button>
+                    {% endif %}
+                    </form>
+
+                </li>
+				<li><button type="button" class="btn btn-warning"><i class="fa fa-eye"></i> <span class="badge bg-secondary"> {{ profile.count_viewr }}</span></button></li>

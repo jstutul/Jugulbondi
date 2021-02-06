@@ -1,0 +1,264 @@
+<!doctype html>
+{% load static %}
+<html class="fixed">
+	<head>
+
+		<!-- Basic -->
+		<meta charset="UTF-8">
+
+		<title>{% block title %}
+
+		{% endblock %}</title>
+		<meta name="keywords" content="Matrimonial" />
+		<meta name="description" content="Matrimonial">
+		<meta name="author" content="Matrimonial">
+
+		<!-- Mobile Metas -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+		<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
+
+		<!-- Vendor CSS -->
+		<link rel="stylesheet" href="{% static 'dashboard/assets/vendor/bootstrap/css/bootstrap.css' %}" />
+		<link rel="stylesheet" href="{% static 'dashboard/assets/vendor/font-awesome/css/font-awesome.css' %}" />
+		<link rel="stylesheet" href="{% static 'dashboard/assets/vendor/magnific-popup/magnific-popup.css' %}" />
+		<link rel="stylesheet" href="{% static 'dashboard/assets/vendor/bootstrap-datepicker/css/datepicker3.css' %}" />
+
+		<!-- Specific Page Vendor CSS -->
+		<link rel="stylesheet" href="{% static 'dashboard/assets/vendor/jquery-ui/css/ui-lightness/jquery-ui-1.10.4.custom.css' %}" />
+		<link rel="stylesheet" href="{% static 'dashboard/assets/vendor/bootstrap-multiselect/bootstrap-multiselect.css' %}" />
+		<link rel="stylesheet" href="{% static 'dashboard/assets/vendor/morris/morris.css' %}s\" />
+
+		<!-- Theme CSS -->
+		<link rel="stylesheet" href="{% static 'dashboard/assets/stylesheets/theme.css' %}" />
+
+		<!-- Skin CSS -->
+		<link rel="stylesheet" href="{% static 'dashboard/assets/stylesheets/skins/default.css' %}" />
+
+		<!-- Theme Custom CSS -->
+		<link rel="stylesheet" href="{% static 'dashboard/assets/stylesheets/theme-custom.css' %}">
+        <style>
+            {% block css %}
+            
+            {% endblock %}
+        </style>
+		<!-- Head Libs -->
+		<script src="{% static 'dashboard/assets/vendor/modernizr/modernizr.js' %}"></script>
+
+	</head>
+	<body>
+		<section class="body">
+
+
+			<header class="header">
+				<div class="logo-container">
+					<a href="{% url 'Home' %}" class="logo" style="    font-size: 37px;color: #fba405;">
+                        JUGULBONDI
+					</a>
+					<div class="visible-xs toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
+						<i class="fa fa-bars" aria-label="Toggle sidebar"></i>
+					</div>
+				</div>
+
+				<!-- start: search & user box -->
+				<div class="header-right">
+					<span class="separator"></span>
+Welcome
+					<span class="separator"></span>
+
+					<div id="userbox" class="userbox">
+						<a href="#" data-toggle="dropdown">
+							<figure class="profile-picture">
+								<img src="{{ request.user.profile.photo.url }}" alt="Joseph Doe" class="img-circle" data-lock-picture="assets/images/!logged-user.jpg" />
+							</figure>
+							<div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@JSOFT.com">
+								<span class="name">{{ request.user.first_name }} {{ request.user.last_name }}</span>
+								{% if request.user.is_superuser == True %}
+                                <span class="role">admin</span>
+                                {% else %}
+                                <span class="role">regular user</span>
+                                {% endif %}
+							</div>
+
+							<i class="fa custom-caret"></i>
+						</a>
+
+						<div class="dropdown-menu">
+							<ul class="list-unstyled">
+								<li class="divider"></li>
+								<li>
+									<a href="{% url 'updateprofile' %}"><i class="fa fa-user-circle"></i> profile update</a>
+								</li>
+								<li>
+									<a role="menuitem" tabindex="-1" href="{% url 'logout' %}"><i class="fa fa-power-off"></i> Logout</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- end: search & user box -->
+			</header>
+
+
+			<div class="inner-wrapper">
+
+				<aside id="sidebar-left" class="sidebar-left">
+
+					<div class="sidebar-header">
+						<div class="sidebar-title">
+							Matrimonial
+						</div>
+						<div class="sidebar-toggle hidden-xs" data-toggle-class="sidebar-left-collapsed" data-target="html" data-fire-event="sidebar-left-toggle">
+							<i class="fa fa-bars" aria-label="Toggle sidebar"></i>
+						</div>
+					</div>
+
+					<div class="nano">
+						<div class="nano-content">
+							<nav id="menu" class="nav-main" role="navigation">
+								<ul class="nav nav-main">
+									<li class="nav-active">
+										<a href="{% url 'dashboard' %}">
+											<i class="fa fa-home" aria-hidden="true"></i>
+											<span>Dashboard</span>
+										</a>
+									</li>
+									<li>
+										<a href="{% url 'requestzone' %}">
+											<span class="pull-right label label-primary">{{ request.user.profile.receive_request.count }}</span>
+											<i class="fa fa-phone" aria-hidden="true"></i>
+											<span>Contract view Zone</span>
+										</a>
+									</li>
+                                    <li>
+										<a href="{% url 'messenger' %}">
+											<span class="pull-right label label-primary"></span>
+											<i class="fa fa-envelope" aria-hidden="true"></i>
+											<span>Messenger</span>
+										</a>
+									</li>
+                                    <li class="nav-parent">
+										<a>
+											<i class="fa fa-random" aria-hidden="true"></i>
+											<span>Success Story</span>
+										</a>
+										<ul class="nav nav-children">
+											<li>
+												<a href="{% url 'storylist' %}">
+                                                    <span class="pull-right label label-primary">{{ request.user.successstory.count}}</span>
+                                                    <span>Story List</span>
+												</a>
+											</li>
+
+											<li>
+										<a href="{% url 'addsuccess' %}">
+											<span class="pull-right label label-primary"></span>
+											<span>Add  Story</span>
+										</a>
+									</li>
+										</ul>
+									</li>
+
+                                    <li>
+										<a href="{% url 'update_profile' %}">
+											<span class="pull-right label label-primary"></span>
+											<i class="fa fa-user" aria-hidden="true"></i>
+											<span>Completed Profile</span>
+										</a>
+									</li>
+									<li class="nav-parent">
+										<a>
+											<i class="fa fa-copy" aria-hidden="true"></i>
+											<span>Friends Zone</span>
+										</a>
+										<ul class="nav nav-children">
+											<li>
+												<a href="{% url 'friends' %}">
+                                                    <span class="pull-right label label-primary">{{ request.user.profile.friends.count }}</span>
+                                                    <span>Friend List</span>
+												</a>
+											</li>
+
+											<li>
+												<a href="{% url 'friendsrequest' %}">
+                                                     <span class="pull-right label label-primary">{{ request.user.profile.friend_request.count }}</span>
+													 Friend Request
+												</a>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</nav>
+
+
+						</div>
+
+					</div>
+
+				</aside>
+
+
+				<section role="main" class="content-body">
+					<header class="page-header">
+						<h2>Dashboard</h2>
+
+					</header>
+                    {% block content %}
+
+                    {% endblock %}
+
+				</section>
+			</div>
+
+		</section>
+
+		<!-- Vendor -->
+		<script src="{% static 'dashboard/assets/vendor/jquery/jquery.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/bootstrap/js/bootstrap.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/nanoscroller/nanoscroller.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/magnific-popup/magnific-popup.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/jquery-placeholder/jquery.placeholder.js' %}"></script>
+
+		<!-- Specific Page Vendor -->
+		<script src="{% static 'dashboard/assets/vendor/jquery-ui/js/jquery-ui-1.10.4.custom.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/jquery-ui-touch-punch/jquery.ui.touch-punch.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/jquery-appear/jquery.appear.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/bootstrap-multiselect/bootstrap-multiselect.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/jquery-easypiechart/jquery.easypiechart.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/flot/jquery.flot.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/flot-tooltip/jquery.flot.tooltip.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/flot/jquery.flot.pie.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/flot/jquery.flot.categories.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/flot/jquery.flot.resize.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/jquery-sparkline/jquery.sparkline.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/raphael/raphael.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/morris/morris.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/gauge/gauge.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/snap-svg/snap.svg.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/liquid-meter/liquid.meter.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/jqvmap/jquery.vmap.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/jqvmap/data/jquery.vmap.sampledata.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/jqvmap/maps/jquery.vmap.world.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/jqvmap/maps/continents/jquery.vmap.africa.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/jqvmap/maps/continents/jquery.vmap.asia.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/jqvmap/maps/continents/jquery.vmap.australia.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/jqvmap/maps/continents/jquery.vmap.europe.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/jqvmap/maps/continents/jquery.vmap.north-america.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/jqvmap/maps/continents/jquery.vmap.south-america.js' %}"></script>
+
+		<!-- Theme Base, Components and Settings -->
+		<script src="{% static 'dashboard/assets/javascripts/theme.js' %}"></script>
+
+		<!-- Theme Custom -->
+		<script src="{% static 'dashboard/assets/javascripts/theme.custom.js' %}"></script>
+
+		<!-- Theme Initialization Files -->
+		<script src="{% static 'dashboard/assets/javascripts/theme.init.js' %}"></script>
+
+
+		<!-- Examples -->
+		<script src="{% static 'dashboard/assets/javascripts/dashboard/examples.dashboard.js' %}"></script>
+	</body>
+</html>

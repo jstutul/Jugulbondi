@@ -1,0 +1,13 @@
+age,height,weight,city,education,income,gender,body_type,complexin,drinking,smoking,religion,family_status,marital_status,physical_status,id
+30,70,85.0,Dhaka,LLB,2000000,Male,Slim,Fair,Occasionally,Never,Hindu,Medium,Single,Normal,5
+25,70,85.0,Dhaka,BSC,100000,Male,Medium,Light Fair,Occasionally,Regularly,Muslim,Reputed,Married,Normal,7
+35,66,80.0,Chandpur,BA,800000,Male,Faty,Light Fair,Never,Sometimes,Christians,Reputed,Single,Abnormal,10
+32,65,75.0,Khulna,MBBS,800000,Male,Faty,Fair,Never,Sometimes,Buddhists,Medium,Single,Normal,11
+26,60,75.0,Pabna,MBA,500000,Male,Faty,Light Brown,Never,Sometimes,Hindu,Low,Single,Abnormal,13
+35,69,80.0,Dhaka,MBA,2000000,Male,Slim,Fair,Never,Never,Muslim,Medium,Single,Normal,23
+33,72,85.0,Dhaka,CIVIL,1000000,Male,Slim,Light Fair,Never,Never,Muslim,Reputed,Single,Normal,30
+35,68,82.0,Dhaka,BSC,12000000,Male,Slim,Fair,Never,Never,Muslim,Reputed,Divorced,Normal,31
+28,68,72.0,Khulna,MBBS,920000,Male,Faty,Brown,Never,Never,Muslim,Reputed,Single,Normal,32
+22,65,70.0,Dhaka,BBA,400000,Male,Slim,Fair,Never,Never,Muslim,Medium,Single,Normal,33
+24,68,78.0,Rangpur,BSC,560000,Male,Slim,Fair,Never,Never,Muslim,Reputed,Single,Normal,34
+28,69,79.0,Khulna,BBA,1500000,Male,Medium,Fair,Never,Never,Muslim,Reputed,Single,Normal,36

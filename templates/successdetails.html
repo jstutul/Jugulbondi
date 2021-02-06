@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+success story details
+{% endblock %}
+{% block css %}
+.responsive{
+    width:100%;
+    height:auto;
+    }
+@media screen and (max-width: 767px)
+.successimg {
+    width:200px;
+    height:200px;
+}
+{% endblock %}
+
+{% block content %}
+ <section id="details"> 
+  <div class="container">
+   <div class="row">
+    <div class="col-sm-12 space_all">
+	 <div class="col-sm-9 space_all">
+	  <div class="col-sm-12 space_all">
+	   <div class="details_main clearfix">
+	    <div class="col-sm-12 space_all">
+	    <div class="details_3 mr-4">
+		 <img src="{{ story.photo.url }}" class="responsive">
+		</div>
+		 <div class="details_5 float-left">
+             <p style="margin-top: 15px; text-align: initial;">Post By : {{ story.post_by.full_name }}
+             </p >
+             <p style="margin-top: 3px; text-align: initial;">Post on : {{ story.post_on | timesince }}</p>
+
+		 </div>
+	   </div>
+	   </div>	   	   
+	  </div>
+	  <div class="col-sm-12 space_all">
+	   <div class="details_13 clearfix">
+		 <div class="details_14">
+		  <p>{{ story.describe | safe }}</p>
+		 </div>
+           <ul class="col-sm-6" id="like-section">
+            {% include 'partial_like.html' %}
+
+           </ul>
+
+	   </div>
+
+
+	  </div>
+	  <div class="col-sm-12 space_all">
+	   <div class="details_13 clearfix main-comment-section">
+        {% include 'comment_section.html' %}
+	   </div>
+
+
+	  </div>
+	 </div>
+	 <div class="col-sm-3">
+	    <div class="details_main_1 clearfix">
+	   <div class="details_9">
+	    <h3>You may Also Like</h3>
+	   </div>
+          {% for p in other %}
+	    <div class="col-sm-12 space_all">
+	    <div class="col-sm-3 space_all">
+		 <div class="details_10">
+		  <p><a><img src="{{ p.photo.url }}" style="width: 50px;height: 50px"></a></p>
+		 </div>
+		</div>
+		<div class="col-sm-9 space_all">
+		 <div class="details_11">
+		 <p><a href="{% url 'viewstory' p.id %}"> <span class="well_24">{{ p.post_by.full_name }}</span></br>
+			{{p.post_on}}
+         </a>
+		 </div>
+		</div>
+	   </div>
+          {% endfor %}
+	   </div>
+	 </div>
+	</div>
+   </div>
+  </div>
+ </section>
+
+{% endblock %}
+

@@ -1,0 +1,721 @@
+<!doctype html>
+{% load static %}
+<html class="fixed">
+	<head>
+
+		<!-- Basic -->
+		<meta charset="UTF-8">
+
+		<title>{% block title %}
+
+		{% endblock %}</title>
+		<meta name="keywords" content="Matrimonial" />
+		<meta name="description" content="Matrimonial">
+		<meta name="author" content="Matrimonial">
+
+		<!-- Mobile Metas -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+		<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
+
+		<!-- Vendor CSS -->
+		<link rel="stylesheet" href="{% static 'dashboard/assets/vendor/bootstrap/css/bootstrap.css' %}" />
+		<link rel="stylesheet" href="{% static 'dashboard/assets/vendor/font-awesome/css/font-awesome.css' %}" />
+		<link rel="stylesheet" href="{% static 'dashboard/assets/vendor/magnific-popup/magnific-popup.css' %}" />
+		<link rel="stylesheet" href="{% static 'dashboard/assets/vendor/bootstrap-datepicker/css/datepicker3.css' %}" />
+
+		<!-- Specific Page Vendor CSS -->
+		<link rel="stylesheet" href="{% static 'dashboard/assets/vendor/jquery-ui/css/ui-lightness/jquery-ui-1.10.4.custom.css' %}" />
+		<link rel="stylesheet" href="{% static 'dashboard/assets/vendor/bootstrap-multiselect/bootstrap-multiselect.css' %}" />
+		<link rel="stylesheet" href="{% static 'dashboard/assets/vendor/morris/morris.css' %}s\" />
+
+		<!-- Theme CSS -->
+		<link rel="stylesheet" href="{% static 'dashboard/assets/stylesheets/theme.css' %}" />
+
+		<!-- Skin CSS -->
+		<link rel="stylesheet" href="{% static 'dashboard/assets/stylesheets/skins/default.css' %}" />
+
+		<!-- Theme Custom CSS -->
+		<link rel="stylesheet" href="{% static 'dashboard/assets/stylesheets/theme-custom.css' %}">
+        <style>
+            {% block css %}
+
+            {% endblock %}
+        </style>
+		<!-- Head Libs -->
+		<script src="{% static 'dashboard/assets/vendor/modernizr/modernizr.js' %}"></script>
+
+	</head>
+	<body>
+		<section class="body">
+
+
+			<header class="header">
+				<div class="logo-container">
+					<a href="{% url 'Home' %}" class="logo ">
+                        JUGULBONDI
+					</a>
+					<div class="visible-xs toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
+						<i class="fa fa-bars" aria-label="Toggle sidebar"></i>
+					</div>
+				</div>
+
+				<!-- start: search & user box -->
+				<div class="header-right">
+					<span class="separator"></span>
+
+					<span class="separator"></span>
+
+					<div id="userbox" class="userbox">
+						<a href="#" data-toggle="dropdown">
+							<figure class="profile-picture">
+								<img src="{{ request.user.profile.photo.url }}" alt="Joseph Doe" class="img-circle" data-lock-picture="assets/images/!logged-user.jpg" />
+							</figure>
+							<div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@JSOFT.com">
+								<span class="name">{{ request.user.first_name }} {{ request.user.last_name }}</span>
+								{% if request.user.is_superuser == True %}
+                                <span class="role">admin</span>
+                                {% else %}
+                                <span class="role">regular user</span>
+                                {% endif %}
+							</div>
+
+							<i class="fa custom-caret"></i>
+						</a>
+
+						<div class="dropdown-menu">
+							<ul class="list-unstyled">
+								<li class="divider"></li>
+								<li>
+									<a role="menuitem" tabindex="-1" href="#" data-lock-screen="true"><i class="fa fa-lock"></i> Lock Screen</a>
+								</li>
+								<li>
+									<a role="menuitem" tabindex="-1" href="{% url 'logout' %}"><i class="fa fa-power-off"></i> Logout</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- end: search & user box -->
+			</header>
+
+
+			<div class="inner-wrapper">
+
+				<aside id="sidebar-left" class="sidebar-left">
+
+					<div class="sidebar-header">
+						<div class="sidebar-title">
+							Matrimonial
+						</div>
+						<div class="sidebar-toggle hidden-xs" data-toggle-class="sidebar-left-collapsed" data-target="html" data-fire-event="sidebar-left-toggle">
+							<i class="fa fa-bars" aria-label="Toggle sidebar"></i>
+						</div>
+					</div>
+
+					<div class="nano">
+						<div class="nano-content">
+							<nav id="menu" class="nav-main" role="navigation">
+								<ul class="nav nav-main">
+									<li class="nav-active">
+										<a href="{% url 'dashboard' %}">
+											<i class="fa fa-home" aria-hidden="true"></i>
+											<span>Dashboard</span>
+										</a>
+									</li>
+									<li>
+										<a href="{% url 'requestzone' %}">
+											<span class="pull-right label label-primary">{{ request.user.profile.receive_request.count }}</span>
+											<i class="fa fa-phone" aria-hidden="true"></i>
+											<span>Contract view Zone</span>
+										</a>
+									</li>
+                                    <li>
+										<a href="{% url 'messenger' %}">
+											<span class="pull-right label label-primary"></span>
+											<i class="fa fa-envelope" aria-hidden="true"></i>
+											<span>Messenger</span>
+										</a>
+									</li>
+                                    <li>
+										<a href="{% url 'update_profile' %}">
+											<span class="pull-right label label-primary"></span>
+											<i class="fa fa-user" aria-hidden="true"></i>
+											<span>Completed Profile</span>
+										</a>
+									</li>
+									<li class="nav-parent">
+										<a>
+											<i class="fa fa-copy" aria-hidden="true"></i>
+											<span>Friends Zone</span>
+										</a>
+										<ul class="nav nav-children">
+											<li>
+												<a href="{% url 'friends' %}">
+                                                    <span class="pull-right label label-primary">{{ request.user.profile.friends.count }}</span>
+                                                    <span>Friend List</span>
+												</a>
+											</li>
+
+											<li>
+												<a href="{% url 'friendsrequest' %}">
+                                                     <span class="pull-right label label-primary">{{ request.user.profile.friend_request.count }}</span>
+													 Friend Request
+												</a>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</nav>
+
+						</div>
+
+					</div>
+
+				</aside>
+
+
+				<section role="main" class="content-body">
+					<header class="page-header">
+						<h2>Complete Registration</h2>
+
+					</header>
+                   <div class="row">
+							<div class="col-xs-12">
+								<section class="panel form-wizard" id="w4">
+									<header class="panel-heading">
+
+										<h2 class="panel-title">Complete your profile with validate information</h2>
+									</header>
+									<div class="panel-body">
+										<div class="wizard-progress wizard-progress-lg">
+											<div class="steps-progress">
+												<div class="progress-indicator" style="width: 0%;"></div>
+											</div>
+											<ul class="wizard-steps">
+												<li class="active">
+													<a href="#w4-account" data-toggle="tab"><span>1</span>Personal Info</a>
+												</li>
+												<li>
+													<a href="#w4-profile" data-toggle="tab"><span>2</span>Habits & Contact</a>
+												</li>
+												<li>
+													<a href="#w4-billing" data-toggle="tab"><span>3</span>Education & Family</a>
+												</li>
+												<li>
+													<a href="#w4-confirm" data-toggle="tab"><span>4</span>Patner Preference</a>
+												</li>
+											</ul>
+										</div>
+
+										<form class="form-horizontal" novalidate="novalidate" method="post" enctype="multipart/form-data">{% csrf_token %}
+											<div class="tab-content">
+												<div id="w4-account" class="tab-pane active">
+                                                    <div class="row col-sm-12">
+                                                        <div class="col float-left col-sm-6">
+                                                            <div class="form-group">
+                                                                <label class="col-sm-6 control-label" for="w4-age">Your Age</label>
+                                                                <div class="col-sm-6">
+                                                                    <input type="number" class="form-control" name="age" id="w4-age" placeholder="enter your real age" required>
+                                                                </div>
+													       </div>
+                                                            <div class="form-group">
+                                                                    <label class="col-sm-6 control-label" for="w4-height">Your Height</label>
+                                                                    <div class="col-sm-6">
+                                                                        <input type="number" class="form-control" name="height" id="w4-height" placeholder="enter height in inch"  required>
+                                                                    </div>
+													        </div>
+                                                            <div class="form-group">
+                                                                <label class="col-sm-6 control-label" for="w4-weight">Your Weight</label>
+                                                                <div class="col-sm-6">
+                                                                    <input type="number" class="form-control" name="weight" id="w4-weight" placeholder="enter weight in kg" required>
+                                                                </div>
+													        </div>
+                                                             <div class="form-group">
+                                                                <label class="col-sm-6 control-label" for="w4-mother_tongue">Mother Tongue</label>
+                                                                <div class="col-sm-6">
+                                                                    <input type="text" class="form-control" name="mother_tongue" id="w4-mother_tongue"  placeholder="sample Bangla" required>
+                                                                </div>
+													        </div>
+                                                            <div class="form-group">
+                                                                <label class="col-sm-6 control-label" for="w4-image">Select Image</label>
+                                                                <div class="col-sm-6">
+                                                                    <input type="file"  name="image" id="w4-image" required="">
+                                                                </div>
+													        </div>
+
+                                                        </div>
+                                                        <div class="col float-right col-sm-6">
+                                                            <div class="form-group">
+														<label class="col-sm-6 control-label" for="w4-gender">Gender</label>
+														<div class="col-sm-6">
+															<select class="form-control" name="gender" required="">
+																<option value="Male">Male</option>
+																<option value="Female">Female</option>
+																<option value="Others">Others</option>
+															</select>
+														</div>
+													</div>
+                                                            <div class="form-group">
+														<label class="col-sm-6 control-label" for="w4-marital_status">Marital Status</label>
+														<div class="col-sm-6">
+															<select class="form-control" name="marital_status"  id="w4-marital_status" required="">
+																<option value="Single">Single</option>
+																<option value="Married">Married</option>
+																<option value="Divorced">Divorced</option>
+															</select>
+														</div>
+													</div>
+                                                            <div class="form-group">
+														<label class="col-sm-6 control-label" for="w4-body_type">Body Type</label>
+														<div class="col-sm-6">
+															<select class="form-control" name="body_type"  id="w4-body_type" required="">
+																<option value="Slim">Slim</option>
+																<option value="Faty">Faty</option>
+																<option value="Medium">Medium</option>
+															</select>
+														</div>
+													</div>
+                                                             <div class="form-group">
+														<label class="col-sm-6 control-label" for="w4-body_type">Complexion</label>
+														<div class="col-sm-6">
+															<select class="form-control" name="complexion"  id="w4-body_type" required="">
+																<option value="Fair">Fair</option>
+																<option value="Light Fair">Light Fair</option>
+																<option value="Black">Black</option>
+																<option value="Light Brown">Light Brown</option>
+																<option value="Brown">Brown</option>
+															</select>
+														</div>
+													</div>
+													        <div class="form-group">
+														<label class="col-sm-6 control-label" for="w4-religion">Religion</label>
+														<div class="col-sm-6">
+															<select class="form-control" name="religion"  id="w4-religion" required="">
+																<option value="Muslim">Muslim</option>
+																<option value="Hindu">Hindu</option>
+																<option value="Buddhists">Buddhists</option>
+																<option value="Christians">Christians</option>
+															</select>
+														</div>
+													</div>
+                                                            <div class="form-group">
+														<label class="col-sm-6 control-label" for="w4-physical">Physical Status</label>
+														<div class="col-sm-6">
+															<select class="form-control" name="physical" id="w4-physical" required="">
+																<option value="Normal">Normal</option>
+																<option value="Abnormal">Abnormal</option>
+															</select>
+														</div>
+													</div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-3 col-sm-12 mx-4 mr-2">
+                                                      <label for="exampleFormControlTextarea1" class="form-label">About You</label>
+                                                      <textarea class="form-control" id="exampleFormControlTextarea1" name="about"  rows="3" required>
+
+                                                      </textarea>
+                                                    </div>
+
+
+												</div>
+												<div id="w4-profile" class="tab-pane">
+                                                    <div class="row col-sm-12">
+                                                        <div class="col-sm-6 float-left">
+                                                            <div class="form-group">
+														<label class="col-sm-6 control-label" for="w4-drinking">Drinking Habit</label>
+														<div class="col-sm-6">
+															<select class="form-control" name="drinking" required="">
+																<option value="Never">Never</option>
+																<option value="Occasionally">Occasionally</option>
+																<option value="Regularly">Regularly</option>
+															</select>
+														</div>
+													</div>
+                                                    <div class="form-group">
+														<label class="col-sm-6 control-label" for="w4-smoking">Smoking Habit</label>
+														<div class="col-sm-6">
+															<select class="form-control" name="smoking" required="">
+																<option value="Never">Never</option>
+																<option value="Occasionally">Occasionally</option>
+																<option value="Regularly">Regularly</option>
+															</select>
+														</div>
+													</div>
+                                                    <div class="form-group">
+														<label class="col-sm-6 control-label" for="w4-gender">Eating Habit</label>
+														<div class="col-sm-6">
+															<select class="form-control" name="eating" required="">
+																<option value="Vegetarian">Vegetarian</option>
+																<option value="Non Vegetarian">Non Vegetarian</option>
+																<option value="Both">Both</option>
+															</select>
+														</div>
+													</div>
+                                                    <div class="form-group">
+														<label class="col-sm-6 control-label" for="w4-phone">Phone No</label>
+														<div class="col-sm-6">
+															<input type="text" class="form-control" placeholder="enter 11 digit phone no" name="phone" id="w4-phone" maxlength="11" required="">
+														</div>
+													</div>
+                                                    <div class="form-group">
+														<label class="col-sm-6 control-label" for="w4-whatsapp">Whatsapp No</label>
+														<div class="col-sm-6">
+															<input type="text" class="form-control" placeholder="enter your whatsapp no" name="whatsapp" id="w4-whatsapp" maxlength="11" required>
+														</div>
+													</div>
+
+                                                        </div>
+                                                        <div class="col-sm-6 float-right">
+                                                           <div class="form-group">
+														<label class="col-sm-6 control-label" for="w4-parents">Parents No</label>
+														<div class="col-sm-6">
+															<input type="text" class="form-control"placeholder="enter 11 digit no" name="parents" id="w4-parents" required="">
+														</div>
+													</div>
+                                                     <div class="form-group">
+														<label class="col-sm-6 control-label" for="w4-country">Country</label>
+														<div class="col-sm-6">
+															<input type="text" class="form-control"placeholder="Enter country name" name="country" id="w4-country" required="">
+														</div>
+													</div>
+                                                     <div class="form-group">
+														<label class="col-sm-6 control-label" for="w4-citizen">Citizenship</label>
+														<div class="col-sm-6">
+															<input type="text" class="form-control" placeholder="enter citizenship" name="citizen" id="w4-citizen" required="">
+														</div>
+													</div>
+                                                     <div class="form-group">
+														<label class="col-sm-6 control-label" for="w4-state">State</label>
+														<div class="col-sm-6">
+															<input type="text" class="form-control" placeholder="ebter your living state" name="state" id="w4-state" required="">
+														</div>
+													</div>
+                                                    <div class="form-group">
+														<label class="col-sm-6 control-label" for="w4-city">City</label>
+														<div class="col-sm-6">
+															<input type="text" class="form-control" placeholder="enter city name" name="city" id="w4-city" required="">
+														</div>
+													</div>
+
+                                                        </div>
+                                                    </div>
+												</div>
+												<div id="w4-billing" class="tab-pane">
+													<div class="row col-sm-12">
+                                                        <div class="col-sm-6 float-left">
+                                                            <div class="form-group">
+														<label class="col-sm-6 control-label">Education</label>
+														<div class="col-sm-6">
+															<select class="form-control" name="education" required="">
+																<option value="JSC">JSC</option>
+																<option value="SSC">SSC</option>
+																<option value="HSC">HSC</option>
+																<option value="BBA">BBA</option>
+																<option value="MBA">MBA</option>
+																<option value="BA">BA</option>
+																<option value="BSC">BSC</option>
+																<option value="MBBS">MBBS</option>
+																<option value="CIVIL">CIVIL</option>
+																<option value="DAKIL">DAKIL</option>
+																<option value="KAMIL">KAMIL</option>
+																<option value="LLB">LLB</option>
+															</select>
+														</div>
+													</div>
+                                                    <div class="form-group">
+														<label class="col-sm-6 control-label" for="w4-edetails">Education Details</label>
+														<div class="col-sm-6">
+															<input type="text" class="form-control"placeholder="complete BBA from DU" name="edetails" id="w4-edetails" required="">
+														</div>
+													</div>
+                                                    <div class="form-group">
+														<label class="col-sm-6 control-label"  for="w4-employee">Employee</label>
+														<div class="col-sm-6">
+															<input type="text" class="form-control"placeholder="banker" name="employee" id="w4-employee" required="">
+														</div>
+													</div>
+                                                    <div class="form-group">
+														<label class="col-sm-6 control-label" for="w4-occupation">Occupation</label>
+														<div class="col-sm-6">
+															<input type="text" class="form-control" placeholder="senior manager" name="occupation" id="w4-occupation" required="">
+														</div>
+													</div>
+                                                     <div class="form-group">
+														<label class="col-sm-6 control-label" for="w4-aincome">Annual Income</label>
+														<div class="col-sm-6">
+															<input type="text" class="form-control" name="aincome"placeholder="sample 1000000" id="w4-aincome" required="">
+														</div>
+													</div>
+
+                                                        </div>
+                                                        <div class="col-sm-6 float-right">
+                                                           <div class="form-group">
+														<label class="col-sm-6 control-label" for="w4-family_Value">Family Value</label>
+														<div class="col-sm-6">
+															<input type="text" class="form-control" name="family_Value" placeholder="reputed" id="w4-family_Value" required="">
+														</div>
+													</div>
+                                                    <div class="form-group">
+														<label class="col-sm-6 control-label" for="w4-country">Physical Status</label>
+														<div class="col-sm-6">
+															<select class="form-control" name="family_type" id="w4-country" required>
+																<option value="Reputed">Reputed</option>
+																<option value="Low">Low</option>
+																<option value="Medium">Medium</option>
+															</select>
+														</div>
+													</div>
+                                                     <div class="form-group">
+														<label class="col-sm-6 control-label" for="w4-family_status">Family Status</label>
+														<div class="col-sm-6">
+															<input type="text" class="form-control"placeholder="medium" name="family_status" id="w4-family_status" required="">
+														</div>
+													</div>
+                                                     <div class="form-group">
+														<label class="col-sm-6 control-label" for="w4-father_status">Father Status</label>
+														<div class="col-sm-6">
+															<input type="text" class="form-control" placeholder="Businessman" name="father_status" id="w4-father_status" required="">
+														</div>
+													</div>
+                                                    <div class="form-group">
+														<label class="col-sm-6 control-label" for="w4-city">Family Address</label>
+														<div class="col-sm-6">
+															<input type="text" class="form-control"placeholder="enter address" name="family_location" id="w4-family_location" required="">
+														</div>
+													</div>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-3 col-sm-12 mx-4 mr-2">
+                                                      <label for="exampleFormControlTextarea1" class="form-label">About Family</label>
+                                                      <textarea class="form-control" id="exampleFormControlTextarea1" name="about_family" rows="3" required></textarea>
+                                                    </div>
+												</div>
+												<div id="w4-confirm" class="tab-pane">
+													 <div class="row col-sm-12">
+                                                        <div class="col float-left col-sm-6">
+                                                            <div class="form-group">
+                                                                <label class="col-sm-6 control-label" for="w4-p_age">Max Age</label>
+                                                                <div class="col-sm-6">
+                                                                    <input type="text"placeholder="patner max age" class="form-control" name="p_age" id="w4-p_age" required="">
+                                                                </div>
+													       </div>
+                                                            <div class="form-group">
+                                                                    <label class="col-sm-6 control-label" for="w4-p_height">Min Height</label>
+                                                                    <div class="col-sm-6">
+                                                                        <input type="text" class="form-control" placeholder="patner min age" name="p_height" id="w4-p_height" required="">
+                                                                    </div>
+													        </div>
+                                                            <div class="form-group">
+                                                                <label class="col-sm-6 control-label" for="w4-p_weight">MAx Weight</label>
+                                                                <div class="col-sm-6">
+                                                                    <input type="text" class="form-control"placeholder="patner max weight" name="p_weight" id="w4-p_weight" required="">
+                                                                </div>
+													        </div>
+                                                             <div class="form-group">
+                                                                <label class="col-sm-6 control-label" for="w4-p_mother_tongue">Mother Tongue</label>
+                                                                <div class="col-sm-6">
+                                                                    <input type="text" class="form-control"placeholder="enter mother tongue" name="p_mother_tongue" id="w4-p_mother_tongue" required="">
+                                                                </div>
+													        </div>
+                                                            <div class="form-group">
+                                                                <label class="col-sm-6 control-label" for="w4-p_income">Annual Income</label>
+                                                                <div class="col-sm-6">
+                                                                    <input type="text" class="form-control"placeholder="your annual income" name="p_income" id="w4-p_income" required="">
+                                                                </div>
+													        </div>
+                                                            <div class="form-group">
+                                                                <label class="col-sm-6 control-label" for="w4-p_occupation">Occupation</label>
+                                                                <div class="col-sm-6">
+                                                                    <input type="text" class="form-control"placeholder="yes/no/anything" name="p_occupation" id="w4-p_occupation" required="">
+                                                                </div>
+													        </div>
+                                                            <div class="form-group">
+                                                                <label class="col-sm-6 control-label" for="w4-p_country">Country</label>
+                                                                <div class="col-sm-6">
+                                                                    <input type="text" class="form-control"placeholder="country name" name="p_country" id="w4-p_country" required="">
+                                                                </div>
+													        </div>
+                                                           <div class="form-group">
+                                                                <label class="col-sm-6 control-label" for="w4-p_citizenship">Citizenship</label>
+                                                                <div class="col-sm-6">
+                                                                    <input type="text" class="form-control" placeholder="enter citizenship" name="p_citizenship" id="w4-p_citizenship" required="">
+                                                                </div>
+													        </div>
+                                                             <div class="form-group">
+                                                                <label class="col-sm-6 control-label" for="w4-p_state">State</label>
+                                                                <div class="col-sm-6">
+                                                                    <input type="text" class="form-control"placeholder="enter patner state" name="p_state" id="w4-p_state" required="">
+                                                                </div>
+													        </div>
+
+                                                        </div>
+                                                        <div class="col float-right col-sm-6">
+
+													        <div class="form-group">
+														<label class="col-sm-6 control-label" for="w4-p_religion">Religion</label>
+														<div class="col-sm-6">
+															<select class="form-control" name="p_religion"  id="w4-p_religion" required="">
+																<option value="Muslim">Muslim</option>
+																<option value="Hindu">Hindu</option>
+																<option value="Buddhists">Buddhists</option>
+																<option value="Christians">Christians</option>
+															</select>
+														</div>
+													</div>
+                                                            <div class="form-group">
+														<label class="col-sm-6 control-label" for="w4-p_physical">Physical Status</label>
+														<div class="col-sm-6">
+															<select class="form-control" name="p_physical" id="w4-p_physical" required="">
+																<option value="Normal">Normal</option>
+																<option value="Abnormal">Abnormal</option>
+															</select>
+														</div>
+													</div>
+                                                     <div class="form-group">
+														<label class="col-sm-6 control-label" for="w4-p_drinking">Drinking Habit</label>
+														<div class="col-sm-6">
+															<select class="form-control" name="p_drinking" id="w4-p_drinking" required="">
+																<option value="Never">Never</option>
+																<option value="Occasionally">Occasionally</option>
+																<option value="Regularly">Regularly</option>
+															</select>
+														</div>
+													</div>
+                                                    <div class="form-group">
+														<label class="col-sm-6 control-label" for="w4-p_smoking">Smoking Habit</label>
+														<div class="col-sm-6">
+															<select class="form-control" name="p_smoking" id="w4-p_smoking" required="">
+																<option value="Never">Never</option>
+																<option value="Occasionally">Occasionally</option>
+																<option value="Regularly">Regularly</option>
+															</select>
+														</div>
+													</div>
+                                                    <div class="form-group">
+														<label class="col-sm-6 control-label" for="w4-p_eating">Eating Habit</label>
+														<div class="col-sm-6">
+															<select class="form-control" name="p_eating"id="w4-p_eating" required="">
+																<option value="Vegetarian">Vegetarian</option>
+																<option value="Non Vegetarian">Non Vegetarian</option>
+																<option value="Both">Both</option>
+															</select>
+														</div>
+													</div>
+                                                                 <div class="form-group">
+														<label class="col-sm-6 control-label">Education</label>
+														<div class="col-sm-6">
+															<select class="form-control" name="p_education" required="">
+																<option value="JSC">JSC</option>
+																<option value="SSC">SSC</option>
+																<option value="HSC">HSC</option>
+																<option value="BBA">BBA</option>
+																<option value="MBA">MBA</option>
+																<option value="BA">BA</option>
+																<option value="BSC">BSC</option>
+																<option value="MBBS">MBBS</option>
+																<option value="CIVIL">CIVIL</option>
+																<option value="DAKIL">DAKIL</option>
+																<option value="KAMIL">KAMIL</option>
+																<option value="LLB">LLB</option>
+															</select>
+														</div>
+													</div>
+                                                                                                                <div class="form-group">
+														<label class="col-sm-6 control-label" for="w4-p_body_type">Body Type</label>
+														<div class="col-sm-6">
+															<select class="form-control" name="p_body_type"  id="w4-p_body_type" required="">
+																<option value="Slim">Slim</option>
+																<option value="Faty">Faty</option>
+																<option value="Medium">Medium</option>
+															</select>
+														</div>
+													</div>
+                                                             <div class="form-group">
+														<label class="col-sm-6 control-label" for="w4-p_body_type">Complexion</label>
+														<div class="col-sm-6">
+															<select class="form-control" name="p_complexion"  id="w4-p_body_type" required="">
+																<option value="Fair">Fair</option>
+																<option value="Light Fair">Light Fair</option>
+																<option value="Black">Black</option>
+																<option value="Light Brown">Light Brown</option>
+																<option value="Brown">Brown</option>
+															</select>
+														</div>
+													</div>
+                                                           <div class="form-group">
+                                                                <label class="col-sm-6 control-label" for="w4-p_city">City</label>
+                                                                <div class="col-sm-6">
+                                                                    <input type="text" class="form-control" placeholder="patner city" name="p_city" id="w4-p_city" required="">
+                                                                </div>
+													        </div>
+                                                        </div>
+
+                                                    </div>
+                                                        <button type="submit" class="col-md-2 btn btn-primary mt-4" style="float: right;margin-top: 2%">Finish</button>
+												</div>
+											</div>
+
+										</form>
+									</div>
+								</section>
+							</div>
+						</div>
+
+				</section>
+			</div>
+
+		</section>
+
+		<!-- Vendor -->
+		<script src="{% static 'dashboard/assets/vendor/jquery/jquery.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/bootstrap/js/bootstrap.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/nanoscroller/nanoscroller.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/magnific-popup/magnific-popup.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/jquery-placeholder/jquery.placeholder.js' %}"></script>
+
+		<!-- Specific Page Vendor -->
+		<script src="{% static 'dashboard/assets/vendor/jquery-ui/js/jquery-ui-1.10.4.custom.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/jquery-ui-touch-punch/jquery.ui.touch-punch.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/jquery-appear/jquery.appear.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/bootstrap-multiselect/bootstrap-multiselect.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/jquery-easypiechart/jquery.easypiechart.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/flot/jquery.flot.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/flot-tooltip/jquery.flot.tooltip.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/flot/jquery.flot.pie.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/flot/jquery.flot.categories.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/flot/jquery.flot.resize.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/jquery-sparkline/jquery.sparkline.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/raphael/raphael.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/morris/morris.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/gauge/gauge.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/snap-svg/snap.svg.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/liquid-meter/liquid.meter.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/jqvmap/jquery.vmap.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/jqvmap/data/jquery.vmap.sampledata.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/jqvmap/maps/jquery.vmap.world.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/jqvmap/maps/continents/jquery.vmap.africa.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/jqvmap/maps/continents/jquery.vmap.asia.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/jqvmap/maps/continents/jquery.vmap.australia.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/jqvmap/maps/continents/jquery.vmap.europe.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/jqvmap/maps/continents/jquery.vmap.north-america.js' %}"></script>
+		<script src="{% static 'dashboard/assets/vendor/jqvmap/maps/continents/jquery.vmap.south-america.js' %}"></script>
+
+		<!-- Theme Base, Components and Settings -->
+		<script src="{% static 'dashboard/assets/javascripts/theme.js' %}"></script>
+
+		<!-- Theme Custom -->
+		<script src="{% static 'dashboard/assets/javascripts/theme.custom.js' %}"></script>
+
+		<!-- Theme Initialization Files -->
+		<script src="{% static 'dashboard/assets/javascripts/theme.init.js' %}"></script>
+
+
+		<!-- Examples -->
+		<script src="{% static 'dashboard/assets/javascripts/dashboard/examples.dashboard.js' %}"></script>
+	</body>
+</html>

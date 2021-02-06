@@ -1,0 +1,292 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+jugulbondi.com
+{% endblock %}
+{% block css %}
+.services{
+  background: #f1f1f1;
+  text-align: center;
+}
+.services h1{
+  display: inline-block;
+  text-transform: uppercase;
+  border-bottom: 4px solid #3498db;
+  font-size: 20px;
+  padding-bottom: 10px;
+  margin-top: 40px;
+}
+.cen{
+  max-width: 1200px;
+  margin: auto;
+  overflow: hidden;
+  padding: 20px;
+}
+.service{
+  display: inline-block;
+  width: calc(100% / 3);
+  margin: 0 -2px;
+  padding: 20px;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: 0.4s;
+}
+.service:hover{
+  background: #ddd;
+}
+.service i{
+  color: #3498db;
+  font-size: 34px;
+  margin-bottom: 30px;
+}
+.service h2{
+  font-size: 18px;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin: 0;
+}
+.service p{
+  color: gray;
+  font-size: 15px;
+  font-weight: 500;
+}
+@media screen and (max-width: 800px) {
+  .service{
+    width: 50%;
+  }
+}
+@media screen and (max-width: 500px) {
+  .service{
+    width: 100%;
+  }
+}
+
+{% endblock %}
+{% block content %}
+
+
+ {% if user.is_authenticated == False %}
+<section id="center" class="clearfix">
+   <div class="col-sm-12 space_all">
+
+    <div class="col-sm-6"></div>
+    <div class="col-sm-6">
+   <div class="register_right">
+	<div class="register_right_inner clearfix">
+	 <div class="center_3">
+         {% if messages %}
+  <ul class="messages bg-warning p-4 text-center font-weight-bold">
+    {% for message in messages %}
+      <li class="{{ message.tags }}" style="padding: 5px;font-size: 18px;color: red;margin-bottom: 10px;">{{ message }}</li>
+    {% endfor %}
+  </ul>
+             {% else %}
+	  <h2 class="text-center">Your partner search begins with a</br>
+                              FREE REGISTRATION!</h2> {% endif %}
+	 </div>
+        <form method="post" action="{% url 'signup' %}">{% csrf_token %}
+	  <div class="clearfix clear_1">
+	    <div class="col-sm-4 register_right_inner_1 space_left">
+		<div class="center_4">
+		<p> First Name<p>
+		</div>	    
+	   </div>
+	    <div class="col-sm-8 register_right_inner_1 space_left">
+	   <input type="text" class="input-text"name="first_name"  pattern="[a-zA-Z]+" minlength="2" maxlength="10" required placeholder="must be at least 2 character">
+	 </div>
+	 </div>
+     <div class="clearfix clear_1">
+	    <div class="col-sm-4 register_right_inner_1 space_left">
+		<div class="center_4">
+		<p> Last Name<p>
+		</div>
+	   </div>
+	    <div class="col-sm-8 register_right_inner_1 space_left">
+	   <input type="text" class="input-text"name="last_name"   pattern="[a-zA-Z]+" minlength="4" maxlength="10" required placeholder="must be at least 4 character">
+	 </div>
+	 </div>
+	  <div class="clearfix clear_1">
+	    <div class="col-sm-4 register_right_inner_1 space_left">
+		<div class="center_4">
+		<p>Email ID<p>
+		</div>	    
+	    </div>
+	    <div class="col-sm-8 register_right_inner_1 space_left">
+	   <input type="text" class="input-text" name="email"  pattern="^[a-z0-9](\.?[a-z0-9]){5,}@g(oogle)?mail\.com$" required placeholder="must be a valid email">
+	 </div>
+	 </div>
+	  <div class="clearfix clear_1">
+	    <div class="col-sm-4 register_right_inner_1 space_left">
+		<div class="center_4">
+		<p>Password<p>
+		</div>	    
+	    </div>
+		<div class="col-sm-8 register_right_inner_1 space_left">
+	   <input type="password" class="input-text" name="password1" id="pass1" pattern="^.{8,20}$" required placeholder="must be 8-20 in length">
+	 </div>
+	 </div>
+     <div class="clearfix clear_1">
+	    <div class="col-sm-4 register_right_inner_1 space_left">
+		<div class="center_4">
+		<p>Confirm Password<p>
+		</div>
+	    </div>
+		<div class="col-sm-8 register_right_inner_1 space_left">
+	   <input type="password" class="input-text" name="password2" pattern="^.{8,20}$" id="pass2" placeholder="password must be matched">
+	 </div>
+	 </div>
+
+	  <div class="clearfix col-sm-12 clear_2 space_all">
+	   <div class="col-sm-5 space_all">
+	    <div class="col-sm-12 space_all">
+		 <div class="col-sm-1 space_all">
+		  <div class="center_6">
+		   <h4><a href="#"><input type="checkbox" id="myCheck" onclick="myFunction()"></a></h4>
+		  </div>
+		 </div>
+		 <div class="col-sm-11 space_all">
+		  <div class="center_5">
+		 <a href="#"><span class="well_5">I have read and agree to the T&C and Privacy Policy</span></a>
+		</div>	
+		 </div>
+		</div>           
+	   </div>
+	   <div class="col-sm-7 space_all">
+	   <input type="submit" value="REGISTER FREE" id="registerbtn" class="btn btn-warning col-md-12" disabled>
+
+	   </div>			 
+	 </div>
+            </form>
+	</div>
+   </div>
+  </div>
+   </div>
+</section>
+{% endif %}
+ {% if user.is_authenticated %}
+ <div class="slider">
+        <div class="slides">
+            <div class="slide">
+                <div class="slide-data">
+                    <h1>Search Patner</h1>
+                    <p>You can easily find soul-mate using in our website</p>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="slide-data">
+                    <h1>Matching Patner USing Machine Learning</h1>
+                    <p>we have used machine learnign feature in our website to predict a patner according to your patner preference</p>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="slide-data">
+                    <h1>Success Ratting</h1>
+                    <p>we have build up a machine learning sytem to predict two patner married life success ratting</p>
+                </div>
+            </div>
+        </div>
+
+{#        <button class="arrows prev" onclick="plusslide(-1)">#}
+{#            <span><i class="fa fa-angle-left"></i></span>#}
+{#        </button>#}
+{#        <button class="arrows next" onclick="plusslide(1)">#}
+{#            <span><i class="fa fa-angle-right"></i></span>#}
+{#        </button>#}
+
+        <div class="dots">
+            <span onclick="currentslide(1)"></span>
+            <span onclick="currentslide(2)"></span>
+            <span onclick="currentslide(3)"></span>
+        </div>
+    </div>
+
+{% endif %}
+
+<section id="success">
+ <div class="container">
+  <div class="row">
+   <div class="col-sm-12">
+    <div class="success_1">
+	 <h2>Top 3 Profile of our website </h2>
+	</div>
+       {% for p in pro %}
+	<div class="col-sm-4">
+	 <div class="success_inner clearfix">
+	  <div class="success_2">
+	   <p><img src="{{ p.photo.url }}"></p>
+	 </div>
+	  <div class="success_3">
+	   <h4><a>{{ p.email.first_name }} {{ p.email.last_name }}</a></h4>
+	   <p><a>ID : BD100{{ p.id }}</a></p>
+	   <p><a href="{% url 'viewprofile' p.id %}" class="btn btn-success btn-sm">View Profile</a></p>
+	  </div>
+	 </div>	 
+	</div>
+       {% endfor %}
+   </div>
+   <div class="col-sm-12 space_all">
+    <div class="col-sm-10"></div>
+	<div class="col-sm-2">
+	 <div class="success_4">
+	  <p><a href="{% url 'listing' %}">View More</a></p>
+	 </div>
+	</div>
+   </div>
+  </div>
+ </div>
+</section>
+     <div class="services">
+      <h1>Our Services</h1>
+      <div class="cen">
+        <div class="service">
+          <i class="fa fa-anchor"></i>
+          <h2>7 days Customer service</h2>
+          <p>We provide customer support from 10 a.m. to 6 p.m. Clients can contact with us via email, phone and Facebook messenger. We try to give simple and expeditious solutions to your problems.</p>
+        </div>
+
+        <div class="service">
+          <i class="fa fa-android"></i>
+          <h2>Special consultancy</h2>
+          <p>We advice on how to make your profile stand out. If you are a premium customer, we will aid you in search of suitable matches based on your preferences. We will aid you by providing some links of potential bride/groom based on your preference.</p>
+        </div>
+
+        <div class="service">
+          <i class="fa fa-angellist"></i>
+          <h2>Facebook page for live interaction</h2>
+          <p>We have a facebook page where our clients may initiate live interaction with us. We try to solve any type of problems and answer any kind of query of our clients. Besides we sometime post our registered clients words about themselves in our page.</p>
+        </div>
+
+        <div class="service">
+          <i class="fa fa-server"></i>
+          <h2>Security and privacy ensured</h2>
+          <p>Your phone, send message by any other user without your permission. For contact information user have to go through two step security process.</p>
+        </div>
+
+        <div class="service">
+          <i class="fa fa-low-vision"></i>
+          <h2>Machine Learning </h2>
+          <p>we have use machine learning algorithom in our web site to predict the best maching between to user and also predict the success rate about their married life.</p>
+        </div>
+
+        <div class="service">
+          <i class="fa fa-angellist"></i>
+          <h2>Success Story</h2>
+          <p>we are offering our user to write their success story about their married life and also feedback us the benefit of our website using</p>
+        </div>
+      </div>
+    </div>
+<section id="place">
+ <div class="container">
+  <div class="row">
+   <div class="col-sm-12">  
+    <div class="place_1">
+	 <h4>About us</h4>
+	  <p>jugulbondi.com is the most trusted matrimonial website in Bangladesh. Quietly making happy marriages possible among brides and grooms located around the world. We care about your privacy and we take every step possible to protect it. We have our office in Dhaka where our matchmakers are working hard to provide dedicated & personalized services to find the most suitable bride or groom for you. If you are busy, and do not have a lot of time to find the perfect match for you, our matchmakers are available to help. We are the 'marriage media' of the digital era.</p>
+	</div>
+   </div>
+
+  </div>
+ </div>
+</section>
+
+{% endblock %}

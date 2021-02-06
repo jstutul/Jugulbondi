@@ -1,0 +1,105 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block content %}
+
+                                    {% if request.user.profile.photo != None %}
+									<div class="img-responsive p-4">
+										<img class="appear-animation pull-left fadeInUp appear-animation-visible" src="{{ request.user.profile.photo.url }}" width="200" height="210"  data-appear-animation="fadeInUp" style="padding: 1%;">
+									</div>
+                                    {% endif %}
+									<h4>About Me</h4>
+									<p> {{ request.user.profile.about }}</p>
+									<hr>
+    <br><br>
+    <div class="col-md-12">
+
+							<h2 class="pb-lg">Other Informations</h2>
+
+							<div class="toggle" data-plugin-toggle="" data-plugin-options="{ &quot;isAccordion&quot;: true }">
+								<section class="toggle active">
+									<label>Basic Details</label>
+									<div class="toggle-content" style="display: block;">
+										<h4> First Name : {{ request.user.first_name }}</h4>
+										<h4> First Name : {{ request.user.last_name }}</h4>
+										<h4> Email/Userid : {{ request.user.email }}</h4>
+										<h4> Age        : {{ request.user.profile.age }}</h4>
+										<h4> Height     : {{ request.user.profile.height }}</h4>
+										<h4> Gender     : {{ request.user.profile.gender }}</h4>
+										<h4> Mother Tongue: {{ request.user.profile.mother_tongue }}</h4>
+										<h4> Marital Status : {{ request.user.profile.marital_status }}</h4>
+										<h4> Body type : {{ request.user.profile.body_type }}</h4>
+										<h4> Complexin : {{ request.user.profile.complexion }}</h4>
+										<h4> Physical status : {{ request.user.profile.physical_status }}</h4>
+									</div>
+								</section>
+								<section class="toggle">
+									<label>Contract and Location</label>
+									<div class="toggle-content" style="display: none;">
+										<h4>Phone : {{ request.user.profile.phone }}</h4>
+										<h4>Parents Phone : {{ request.user.profile.parents_phone }}</h4>
+										<h4>Whatsapp : {{ request.user.profile.whatsapp }}</h4>
+										<h4>Country : {{ request.user.profile.country }}</h4>
+										<h4>Cityzenship : {{ request.user.profile.citizenship }}</h4>
+										<h4>City : {{ request.user.profile.city }}</h4>
+                                    </div>
+								</section>
+								<section class="toggle">
+									<label>Education & Profession</label>
+									<div class="toggle-content">
+                                        <h4>Education : {{ request.user.profile.education }}</h4>
+                                        <h4>Employee : {{ request.user.profile.employed }}</h4>
+                                        <h4>Annual Income : {{ request.user.profile.annual_income }}</h4>
+                                        <h4>Employeed In : {{ request.user.profile.employed }}</h4>
+                                        <h4>Occupation : {{ request.user.profile.occupation }}</h4>
+                                    </div>
+								</section>
+                                <section class="toggle">
+									<label>Habbits & Religion</label>
+									<div class="toggle-content">
+                                        <h4>Eatting Habits : {{ request.user.profile.eating_habit }}</h4>
+                                        <h4>Drinking Habit : {{ request.user.profile.drinking_habit }}</h4>
+                                        <h4>Smoking Habit : {{ request.user.profile.smoking_habit }}</h4>
+                                        <h4>Religion Status : {{ request.user.profile.religion }}</h4>
+
+                                    </div>
+								</section>
+                                <section class="toggle">
+									<label>Family Info</label>
+									<div class="toggle-content">
+                                        <h4>Family Value: {{ request.user.profile.family_Value }}</h4>
+                                        <h4>Family Type : {{ request.user.profile.family_type }}</h4>
+                                        <h4>Family status : {{ request.user.profile.family_status }}</h4>
+                                        <h4>Father status : {{ request.user.profile.father_status }}</h4>
+                                        <h4>Family Location : {{ request.user.profile.family_location }}</h4>
+                                        <h4>About Family :<spap style="font-size: 15px">{{ request.user.profile.about_family }}</spap></h4>
+
+
+                                    </div>
+								</section>
+                                 <section class="toggle">
+									<label>Patner Preference</label>
+									<div class="toggle-content">
+                                        <h4>Age: {{ request.user.profile.p_age }}</h4>
+                                        <h4>Height : {{ request.user.profile.p_height }}</h4>
+                                        <h4>Weight: {{ request.user.profile.p_weight }}</h4>
+                                        <h4>Mother Tongue : {{ request.user.profile.p_mother_tongue }}</h4>
+                                        <h4>Physical Status : {{ request.user.profile.p_physical_status }}</h4>
+                                        <h4>Eating Habit : {{ request.user.profile.p_eating_habit }}</h4>
+                                        <h4>Drinking Habit : {{ request.user.profile.p_drinking_habit }}</h4>
+                                        <h4>Smoking Habit : {{ request.user.profile.p_smoking_habit }}</h4>
+                                        <h4>Religion :{{ request.user.profile.p_religion }} </h4>
+                                        <h4>Education : {{ request.user.profile.p_education }}</h4>
+                                        <h4>Occupation : {{ request.user.profile.p_occupation }}</h4>
+                                        <h4>Annual Income : {{ request.user.profile.p_annual_income }}</h4>
+                                        <h4>Country Name  : {{ request.user.profile.p_country }}</h4>
+                                        <h4>Citizenship   : {{ request.user.profile.p_citizenship }}</h4>
+                                        <h4>City          : {{ request.user.profile.p_city }}</h4>
+
+
+                                    </div>
+								</section>
+							</div>
+						</div>
+
+
+{% endblock %}

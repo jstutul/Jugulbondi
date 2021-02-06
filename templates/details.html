@@ -1,0 +1,557 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+view profile
+{% endblock %}
+{% block css %}
+a{
+    color:red;
+    }
+{% endblock %}
+
+{% block content %}
+ <section id="details"> 
+  <div class="container">
+   <div class="row">
+    <div class="col-sm-12 space_all">
+	 <div class="col-sm-9 space_all">
+	  <div class="col-sm-12 space_all">
+	   <div class="col-sm-11 space_all">
+	    <div class="details_1">
+		 <h3>{{profile.email.first_name}} {{profile.email.last_name}}</h3>
+		 <p>ID : BD100{{ profile.id }} | Email : {{ profile.email }}</p>
+		</div>
+	   </div>
+	   <div class="col-sm-1 space_all">	   
+	   </div>
+	  </div>
+	  <div class="col-sm-12 space_all">
+	   <div class="details_main clearfix">
+	    <div class="col-sm-4 space_all">
+	    <div class="details_3 mr-4">
+            {% if profile.photo %}
+		 <p><a><img src="{{ profile.photo.url }}" width="90%" style="width: 280px;"></a></p>
+            {% endif %}
+		</div>
+		 <div class="details_5">
+             {% if profile.email.last_login %}
+          <p>Last Login : {{ profile.email.last_login | timesince }}  ago</p>
+            {% else %}
+          <p>Last Login : Long time not seen </p>
+             {% endif %}
+		 </div>
+	   </div>
+	   <div class="col-sm-8 space_all">
+	    <div class="col-sm-12 space_all">
+		 <div class="col-sm-8">
+		  <div class="details_6">
+		   <p>Age: <a > {{profile.age}} Yrs, {{ profile.height }}In  </a></p>
+		   <p>Religion: <a> {{profile.religion}}  </a></p>
+		   <p>Location: <a > {{profile.state}}/ {{profile.city}}/ {{profile.country}} </a></p>
+		   <p>Eduction: <a> {{profile.education}}  </a></p>
+		   <p>Profession: <a >{{profile.occupation}} </a></p>
+		  </div>
+
+		 </div>
+		 <div class="col-sm-4" style="margin-bottom: 5%;float: left;padding-bottom: 4%">
+		  <div class="details_8">
+		   <ul>
+               {% if is_friend %}
+				<li><a><i class="fa fa-user"></i></a> </li>
+				<li><a href="{% url 'sendmessage' %}"><i class="fa fa-envelope"></i></a> </li>
+               {% else %}
+                   {% if is_friend_request %}
+                     <li><a><i class="fa fa-clock-o"></i> pending</a></li>
+                   {% else %}
+				<li><a href="{% url 'addfriend'  profile.id %}"><i class="fa fa-user-plus"></i>Friend</a></li>
+                       {% endif %}
+               {% endif %}
+
+		   </ul>
+
+		  </div>
+		 </div>
+		 <div class="col-sm-4" style="margin-bottom: 13%;">
+             {% if profile.gender != request.user.profile.gender %}
+             <a href="{% url 'successratting' profile.id %}"><i class="fa fa-check"></i>Success Rate</a>
+             {% endif %}
+		 </div>
+          <div class="col-sm-6">
+		  <div class="details_8">
+		   <ul id="follow_section" style="float: left">
+            {% include 'follow.html' %}
+		   </ul>
+		  </div>
+
+		 </div>
+
+		</div>		
+	   </div>
+	   </div>	   	   
+	  </div>
+	  <div class="col-sm-12 space_all">
+	   <div class="details_13 clearfix">
+	     <div class="details_12">
+		  <h2>Personal Information</h2>
+		 </div>
+		 <div class="details_14">
+		  <h4><i class="fa fa-pinterest"></i>About {{ profile.email.first_name }} {{ profile.email.last_name }}</h4>
+		  <p>{{ profile.about }}</p>
+		 </div>
+		 <div class="details_15">
+		  <h4><i class="fa fa-user"></i>Basic Details</h4>
+		 </div>
+		  <div class="col-sm-12">
+		 <div class="col-sm-3">
+		  <div class="details_16">
+		   <ul>
+		       <li>Name</li>
+			   <li>Age</li>
+			   <li>Height</li>
+			   <li>Weight</li>
+			   <li>Mother Tongue</li>
+			   <li>Marital Status</li>
+		   </ul>
+		  </div>
+		 </div>
+		 <div class="col-sm-3">
+		  <div class="details_16">
+		   <ul>
+		       <li>: {{ profile.email.first_name }} {{ profile.email.last_name }}</li>
+			   <li>: {{profile.age}} Yrs</li>
+			   <li>: {{profile.height}} In </li>
+			   <li>: {{ profile.weight }} Kgs</li>
+			   <li>: {{ profile.mother_tongue }}</li>
+			   <li>: {{profile.marital_status}}</li>
+		   </ul>
+		  </div>
+		 </div>
+		 <div class="col-sm-3">
+		  <div class="details_16">
+		   <ul>
+		       <li>Body Type</li>
+			   <li>Complexion</li>
+			   <li>Physical Status</li>
+			   <li>Eating Habits</li>
+			   <li>Drinking Habits</li>
+			   <li>Smoking Habits</li>
+		   </ul>
+		  </div>
+		 </div>
+		 <div class="col-sm-3">
+		  <div class="details_16">
+		   <ul>
+		       <li>: {{profile.body_type}}</li>
+			   <li>: {{profile.complexion}}</li>
+			   <li>: {{profile.physical_status}}</li>
+			   <li>: {{profile.eating_habit}}</li>
+			   <li>: {{ profile.drinking_habit }}</li>
+			   <li>: {{ profile.smoking_habit }}</li>
+		   </ul>
+		  </div>
+		 </div>
+		</div> 
+		<div class="col-sm-12 space_all">
+		 <div class="details_15">
+		  <h4><i class="fa fa-mobile"></i>Contact Details</h4>
+		 </div>
+		 <div class="col-sm-3">
+		  <div class="details_17">
+		   <ul>
+		       <li>Contact Number</li>
+			   <li>Parent Contact</li>
+			   <li>Whatsapp No</li>
+			   <li>Send Mail</li>
+		   </ul>
+		  </div>
+		 </div>
+		 <div class="col-sm-3">
+		  <div class="details_16">
+		   <ul>
+               {% if see_contract %}
+		       <li>: {{profile.phone}}</li>
+			   <li>: {{profile.parents_phone}}</li>
+			   <li>: {{profile.whatsapp}}</li>
+			   <li>: Send request</li>
+               {% else %}
+                   {% if pending %}
+                    <li><h5 class="text-danger">Request Pending</h5></li>
+                    {% else %}
+              <li><h5>Send Request to see details</h5></li>
+              <li><a href="{% url 'sendrequest' profile.id %}">click here</a></li>
+                       {% endif %}
+               {% endif %}
+		   </ul>
+		  </div>
+		 </div>
+		 <div class="col-sm-3"></div>
+		 <div class="col-sm-3"></div>
+		</div>
+		<div class="col-sm-12 space_all">
+		 <div class="details_15">
+		  <h4><i class="fa fa-map"></i>Location</h4>
+		 </div>
+		 <div class="col-sm-3">
+		  <div class="details_17">
+		   <ul>
+		       <li>Country</li>
+			   <li>State</li>			  
+		   </ul>
+		  </div>
+		 </div>
+		 <div class="col-sm-3">
+		  <div class="details_16">
+		   <ul>
+		       <li>: {{profile.country}}</li>
+			   <li>: {{profile.state}}</li>
+		   </ul>
+		  </div>
+		 </div>
+		 <div class="col-sm-3">
+		  <div class="details_16">
+		   <ul>
+		       <li> Citizenship</li>
+			   <li> City</li>
+		   </ul>
+		  </div>
+		 </div>
+		 <div class="col-sm-3">
+		  <div class="details_16">
+		   <ul>
+		       <li>: {{ profile.citizenship }}</li>
+			   <li>: {{profile.city}}</li>
+		   </ul>
+		  </div>
+		 </div>
+		</div>
+		<div class="col-sm-12 space_all">
+		 <div class="details_15">
+		  <h4><i class="fa fa-user"></i>Professional Information</h4>
+		 </div>
+		 <div class="col-sm-3">
+		  <div class="details_17">
+		   <ul>
+		       <li>Education</li>
+			   <li>Education in Detail</li>
+			   <li>Employed in</li>
+			   <li>Occupation</li>
+			   <li>Annual Income</li>
+		   </ul>
+		  </div>
+		 </div>
+		 <div class="col-sm-6">
+		  <div class="details_16">
+		   <ul>
+		       <li>: {{profile.education}}</li>
+			   <li>: {{profile.education_details}}</li>
+			   <li>: {{ profile.occupation }}</li>
+			   <li>: {{profile.employed}}</li>
+               <li>: {{profile.annual_income}} TK </li>
+		   </ul>
+		  </div>
+		 </div>
+		 <div class="col-sm-3"></div>
+		 <div class="col-sm-3"></div>
+		</div>
+        <div class="col-sm-12 space_all">
+		 <div class="details_15">
+		  <h4><i class="fa fa-users"></i>Family Details</h4>
+		 </div>
+		 <div class="col-sm-3">
+		  <div class="details_17">
+		   <ul>
+		        <li>Family Values</li>
+			   <li>Family Type</li>
+			   <li>Family Status</li>
+			   <li>Father's Status</li>
+			   <li>Family Location</li>
+			   <li>About our family</li>
+		   </ul>
+		  </div>
+		 </div>
+		 <div class="col-sm-6">
+		  <div class="details_16">
+		   <ul>
+		       <li>: {{profile.family_Value}}</li>
+			   <li>: {{profile.family_type}})</li>
+			   <li>: {{ profile.family_status }}</li>
+			   <li>: {{profile.father_status}}</li>
+			   <li>: {{profile.family_location}}</li>
+               <li>: {{profile.about_family}} </li>
+		   </ul>
+		  </div>
+		 </div>
+		 <div class="col-sm-3"></div>
+		 <div class="col-sm-3"></div>
+		</div>
+	   </div>       	   
+	  </div>
+	   <div class="col-sm-12 space_all">
+	    <div class="details_19 clearfix">		   
+		   <div class="details_12">
+		    <h2>Her Partner Preferences</h2>
+		   </div>
+		    <div class="col-sm-12">
+			 <div class="details_24 clearfix">
+			  <div class="col-sm-3 space_all">
+		      <div class="details_21">		    
+		      <h4>Basic Preferences</h4>
+				 <ul>
+				   <li> Age</li>
+				   <li>Height</li>
+				   <li>Marital Status</li>
+				   <li>Mother Tongue</li>
+				   <li>Physical Status</li>
+				   <li>Eating Habits</li>
+				   <li>Smoking Habits</li>
+				   <li>Drinking Habits</li>
+			   </ul>
+			  </div>
+			 </div>
+			  <div class="col-sm-7 space_all">
+		       <div class="details_22">
+				   <ul>
+					   <li>: {{profile.p_age}} Yrs</li>
+					   <li>: {{profile.p_height}} In </li>
+					   <li>: {{profile.marital_status}}</li>
+					   <li>: {{profile.p_mother_tongue}}</li>
+					   <li>: {{profile.p_physical_status}}</li>
+					   <li>: {{profile.p_eating_habit}}</li>
+					   <li>: Prefer someone who Smoke {{profile.p_smoking_habit}}</li>
+					   <li>: Prefer someone who Drink {{ profile.p_drinking_habit }}</li>
+				   </ul>
+		     </div>
+		    </div>
+			 <div class="col-sm-2">
+			   <div class="details_23">
+			   <ul>
+                   {% if profile.p_age <= request.user.profile.age %}
+				   <li>..... <i class="fa fa-check-circle"></i> ......</li>
+                   {% else %}
+                   <li>..... <i class="fa fa-warning text-danger"></i> ......</li>
+                   {% endif %}
+                    {% if profile.p_height <= request.user.profile.p_height %}
+				   <li>..... <i class="fa fa-check-circle"></i> ......</li>
+                    {% else %}
+                     <li>..... <i class="fa fa-warning text-danger"></i> ......</li>
+                    {% endif %}
+                    {% if profile.marital_status == request.user.profile.marital_status %}
+				   <li>..... <i class="fa fa-check-circle"></i> ......</li>
+                    {% else %}
+                      <li>..... <i class="fa fa-warning text-danger"></i> ......</li>
+                    {% endif %}
+
+                     {% if profile.p_mother_tongue == request.user.profile.p_mother_tongue %}
+				   <li>..... <i class="fa fa-check-circle"></i> ......</li>
+                    {% else %}
+                     <li>..... <i class="fa fa-warning text-danger"></i> ......</li>
+                    {% endif %}
+                    {% if profile.p_physical_status == request.user.profile.p_physical_status %}
+				   <li>..... <i class="fa fa-check-circle"></i> ......</li>
+                    {% else %}
+                     <li>..... <i class="fa fa-warning text-danger"></i> ......</li>
+                    {% endif %}
+
+                    {% if profile.p_eating_habit == request.user.profile.p_eating_habit %}
+				   <li>..... <i class="fa fa-check-circle"></i> ......</li>
+                    {% else %}
+                     <li>..... <i class="fa fa-warning text-danger"></i> ......</li>
+                    {% endif %}
+
+                     {% if profile.p_smoking_habit == request.user.profile.p_smoking_habit %}
+				   <li>..... <i class="fa fa-check-circle"></i> ......</li>
+                    {% else %}
+                     <li>..... <i class="fa fa-warning text-danger"></i> ......</li>
+                    {% endif %}
+                    {% if profile.p_drinking_habit == request.user.profile.p_drinking_habit %}
+				   <li>..... <i class="fa fa-check-circle"></i> ......</li>
+                    {% else %}
+                    <li>..... <i class="fa fa-warning text-danger"></i> ......</li>
+                    {% endif %}
+			   </ul>
+			  </div>
+		    </div>
+		  </div>			 			 			 
+		  </div>
+          <div class="col-sm-12">
+			 <div class="details_24 clearfix">
+			  <div class="col-sm-3 space_all">
+		      <div class="details_21">		    
+		      <h4>Religious Preferences</h4>
+				 <ul>
+				   <li>Religion</li>
+			   </ul>
+			  </div>
+			 </div>
+			  <div class="col-sm-7 space_all">
+		       <div class="details_22">
+				   <ul>
+					   <li>: {{profile.p_religion}}</li>
+				   </ul>
+		     </div>
+		    </div>
+			 <div class="col-sm-2">
+			   <div class="details_23">
+			   <ul>
+                   {% if profile.p_religion == request.user.profile.p_religion %}
+				   <li>..... <i class="fa fa-check-circle"></i> ......</li>
+                   {% else %}
+                    <li>..... <i class="fa fa-warning text-danger"></i> ......</li>
+                   {% endif %}
+			   </ul>
+			  </div>
+		    </div>
+		  </div>			 			 			 
+		  </div>
+           <div class="col-sm-12">
+			 <div class="details_24 clearfix">
+			  <div class="col-sm-3 space_all">
+		      <div class="details_21">		    
+		      <h4>Professional</h4>
+				 <ul>
+				   <li>Education</li>
+				   <li>Occupation</li>
+				   <li>Annual Income</li>
+			   </ul>
+			  </div>
+			 </div>
+			  <div class="col-sm-7 space_all">
+		       <div class="details_22">
+				   <ul>
+					   <li>: {{profile.p_education}}</li>
+					   <li>: {{ profile.p_occupation }}</li>
+					   <li>: {{profile.p_annual_income}}</li>
+				   </ul>
+		     </div>
+		    </div>
+			 <div class="col-sm-2">
+			   <div class="details_23">
+			   <ul>
+                   {% if profile.p_education == request.user.profile.p_education %}
+				   <li>..... <i class="fa fa-check-circle"></i> ......</li>
+                   {% else %}
+                    <li>..... <i class="fa fa-warning text-danger"></i> ......</li>
+                   {% endif %}
+                    {% if profile.p_occupation == request.user.profile.p_occupation %}
+				   <li>..... <i class="fa fa-check-circle"></i> ......</li>
+                    {% else %}
+                    <li>..... <i class="fa fa-warning text-danger"></i> ......</li>
+                    {% endif %}
+                    {% if profile.p_annual_income <= request.user.profile.p_annual_income %}
+				   <li>..... <i class="fa fa-check-circle"></i> ......</li>
+                    {% else %}
+                    <li>..... <i class="fa fa-warning text-danger"></i> ......</li>
+                    {% endif %}
+			   </ul>
+			  </div>
+		    </div>
+		  </div>			 			 			 
+		  </div>
+           <div class="col-sm-12">
+			 <div class="details_24 clearfix">
+			  <div class="col-sm-3 space_all">
+		      <div class="details_21">		    
+		      <h4>Location Preferences</h4>
+				 <ul>
+				   <li>Country</li>
+				   <li>Residing State</li>
+				   <li>Residing City</li>
+				   <li>Citizenship</li>
+			   </ul>
+			  </div>
+			 </div>
+			  <div class="col-sm-7 space_all">
+		       <div class="details_22">
+				   <ul>
+					   <li>: {{profile.p_country}}</li>
+					   <li>: {{ profile.p_state }}</li>
+					   <li>: {{profile.p_city}}</li>
+					   <li>: {{ profile.p_citizenship }}</li>
+				   </ul>
+		     </div>
+		    </div>
+			 <div class="col-sm-2">
+			   <div class="details_23">
+			   <ul>
+                   {% if profile.p_country <= request.user.profile.p_country %}
+				   <li>..... <i class="fa fa-check-circle"></i> ......</li>
+                    {% else %}
+                    <li>..... <i class="fa fa-warning text-danger"></i> ......</li>
+                    {% endif %}
+                   {% if profile.p_state <= request.user.profile.p_state %}
+				   <li>..... <i class="fa fa-check-circle"></i> ......</li>
+                     {% else %}
+                    <li>..... <i class="fa fa-warning text-danger"></i> ......</li>
+                    {% endif %}
+                   {% if profile.p_city <= request.user.profile.p_city %}
+				   <li>..... <i class="fa fa-check-circle"></i> ......</li>
+                     {% else %}
+                    <li>..... <i class="fa fa-warning text-danger"></i> ......</li>
+                    {% endif %}
+                   {% if profile.p_citizenship <= request.user.profile.p_citizenship %}
+				   <li>..... <i class="fa fa-check-circle"></i> ......</li>
+                     {% else %}
+                    <li>..... <i class="fa fa-warning text-danger"></i> ......</li>
+                    {% endif %}
+			   </ul>
+			  </div>
+		    </div>
+		  </div>			 			 			 
+		  </div>		  
+		</div>	    	    
+	   </div>
+	 </div>
+	 <div class="col-sm-3">
+	    <div class="details_main_1 clearfix">
+	   <div class="details_9">
+	    <h3>View Similar Gender</h3>
+	   </div>
+          {% for p in more_pro %}
+	    <div class="col-sm-12 space_all">
+	    <div class="col-sm-3 space_all">
+		 <div class="details_10">
+		  <p><a><img src="{{ p.photo.url }}" style="width: 50px;height: 50px"></a></p>
+		 </div>
+		</div>
+		<div class="col-sm-9 space_all">
+		 <div class="details_11">
+		 <p><a href="{% url 'viewprofile'  p.id %}"> <span class="well_24">BD100{{ p.id }}</span></br>
+			{{p.age}} Yrs, {{p.height}} In</br>
+			{{p.religion}}
+             {{p.education}}</a>
+		 </div>
+		</div>
+	   </div>
+          {% endfor %}
+	   </div>
+        <div class="details_main_2 clearfix">
+	   <div class="details_9">
+	    <h3>View Similar Education</h3>
+	   </div>
+         {% for e in more_edu %}
+
+	    <div class="col-sm-12 space_all">
+	    <div class="col-sm-3 space_all">
+		 <div class="details_10">
+		  <p><a href="#"><img src="{{ e.photo.url }}" style="width: 50px;height: 50px"></a></p>
+		 </div>
+		</div>
+		<div class="col-sm-9 space_all">
+		 <div class="details_11">
+		 <p><a href="{% url 'viewprofile' e.id %}"> <span class="well_24">BD100{{ e.id }}</span></br>
+			{{e.age}} Yrs, {{e.height}} In</br>
+			{{e.religion}}
+             {{e.education}}</a>
+		 </div>
+		</div>
+
+            {% endfor %}
+	   </div>
+	   </div>
+	 </div>
+	</div>
+   </div>
+  </div>
+ </section>
+
+{% endblock %}
